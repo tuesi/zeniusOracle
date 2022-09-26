@@ -1,0 +1,17 @@
+{
+  "name": "zenius-oracle",
+  "version": "1.0.0",
+  "description": "zeniu oracle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tadas A",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "discord.js": "^14.5.0",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1"
+  }
+}
