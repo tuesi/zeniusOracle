@@ -10,6 +10,6 @@ module.exports = {
             let csgoUsers = interaction.guild.roles.cache.get('814166322770346056').members.map(m=>m.user).join(' ');
             var ct1 = emoji.getEmoji(interaction, "ct1");
             var t2 = emoji.getEmoji(interaction, "t2");
-            interaction.reply(`Einam cesa! <@&814166322770346056 ${ct1} ${csgoUsers} ${t2}`);
+            interaction.reply(`Einam cesa! <@&814166322770346056> ${ct1} ${csgoUsers} ${t2}`);
         }
 }
