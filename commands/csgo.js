@@ -144,14 +144,15 @@ module.exports = {
 
             var activePlayers = [];
 
-            await interaction.reply('ZENIUS SAKO KAD CSGO ZAIS.......');
-            await wait(4000);
             zaidejuArray.forEach(player => {
                 if(player) {
                     activePlayers.push(player);
                 }
             });
 
+            await interaction.reply(`ZENIUS SAKO, KAD BUVO IVESTA ${activePlayers} IR CSGO ZAIS.......`);
+            await wait(4000);
+            
             for(var i = 0; i <= 5; i++) {
                 if(i === 4) {
                     await interaction.followUp({content: `IR..... ${steniu}`, ephemeral: false});
