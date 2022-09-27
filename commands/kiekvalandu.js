@@ -7,7 +7,7 @@ module.exports = {
         .setName("kiekvalandu")
         .setDescription("Paklausk Zeniaus kiek dabar valandu"),
         async execute(interaction) {
-            var aurimts = emoji.getEmoji("aurimts");
+            var aurimts = emoji.getEmoji(interaction, "aurimts");
             interaction.reply(`Nesakysiu ${aurimts}`);
         }
 }
