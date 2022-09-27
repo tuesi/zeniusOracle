@@ -26,7 +26,17 @@ module.exports = {
         }),
         async execute(interaction) {
             let number = Math.floor(Math.random() * ANSWERS.length);
-            console.log(number);
+            // console.log(number);
+            // console.log(interaction.options.getString("klausimas"));
+            if(number === 2) {
+                pabuciuokStatus = true;
+                pabuciuokValue = interaction.options.getString("klausimas");
+                pabuciuokUser = interaction.member.user;
+            } else {
+                pabuciuokStatus = false;
+                pabuciuokValue = '';
+                pabuciuokUser = '';
+            }
             interaction.reply(`${ANSWERS[number]} ${interaction.member.user}`);
         }
 }

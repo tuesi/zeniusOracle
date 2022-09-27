@@ -18,6 +18,9 @@ require('dotenv').config();
 // res.send("ALIVE!");
 // });
 
+pabuciuokStatus = false;
+pubuciuokValue: String;
+
 client.commands = new Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
