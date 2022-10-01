@@ -2,6 +2,8 @@ const { DiscordJS, Client, Collection, MessageEmbed, GatewayIntentBits } = requi
 const client  = new Client({intents: [GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers,GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildPresences]});
 const { Routes } = require('discord-api-types/v9');
 const { REST } = require('@discordjs/rest');
+const mongoose = require('mongoose');
+const loadData = require('./mongodb/loadData');
 const fs = require('fs');
 const cors = require('cors');
 const express = require("express");
@@ -18,8 +20,16 @@ require('dotenv').config();
 // res.send("ALIVE!");
 // });
 
+mongoose.connect(process.env.MONGOOSE);
+  
+  mongoose.connection.on('connected', () => {
+      console.log('Mongoose is connected');
+  });
+
 pabuciuokStatus = false;
 pubuciuokValue: String;
+
+loadData();
 
 client.commands = new Collection();
 
