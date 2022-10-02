@@ -11,6 +11,7 @@ module.exports = {
         .setDescription("Paklausk Zeniaus, kas yra servo debilas"),
         async execute(interaction) {
             let user = interaction.guild.members.cache.filter(user => !user.bot).random().user;
+            console.log(user);
             var trusabaka = emoji.getEmoji(interaction, "trusabaka");
             interaction.reply(`Sitam serve debilas yra ${user} ${trusabaka}`);
 
