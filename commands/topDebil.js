@@ -16,7 +16,7 @@ module.exports = {
             top.sort(function(a,b) {
                 return b.count - a.count;
             })
-            var topNumber = top.length > 9 ? 9 : top.length;
+            var topNumber = top.length > 10 ? 10 : top.length;
             for(var i = 0; i < topNumber; i++) {
                 if(i === 0) {
                     debiluString = debiluString + `${aurimts} ` + "<@"+top[i].tag+">" + ` ${aurimts}` + "\n";
