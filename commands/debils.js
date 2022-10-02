@@ -10,7 +10,7 @@ module.exports = {
         .setName("kasyradebilas")
         .setDescription("Paklausk Zeniaus, kas yra servo debilas"),
         async execute(interaction) {
-            let user = interaction.guild.members.cache.random().user;
+            let user = interaction.guild.members.cache.filter(user => !user.bot).random().user;
             var trusabaka = emoji.getEmoji(interaction, "trusabaka");
             interaction.reply(`Sitam serve debilas yra ${user} ${trusabaka}`);
 
