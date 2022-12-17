@@ -8,7 +8,7 @@ module.exports = {
         .setDescription("Paprasyk Zeniaus, kad pakviestu darugus zaisti tavo pasirinkta zaidima")
         .addStringOption(option => {
             return option
-                .setName("ZAIDIMAS")
+                .setName("zaidimas")
                 .setDescription("ZAIDIMAS")
                 .setRequired(true)
                 .addChoices(
@@ -20,7 +20,7 @@ module.exports = {
         }),
     async execute(interaction) {
 
-        switch (interaction.options.getString('ZAIDIMAS')) {
+        switch (interaction.options.getString('zaidimas')) {
             case 'CSGO':
                 let csgoUsers = interaction.guild.roles.cache.get('814166322770346056').members.map(m => m.user).join(' ');
                 var ct1 = emoji.getEmoji(interaction, "ct1");
