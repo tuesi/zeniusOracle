@@ -64,6 +64,7 @@ module.exports = {
             } else {
                 interaction.followUp(`Bandyk dar karta vaikas`);
             }
+            collector.stop();
         });
     }
 }
