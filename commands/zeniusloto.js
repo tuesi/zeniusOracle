@@ -42,7 +42,7 @@ module.exports = {
         let emojiToUse = [...emojiList];
 
         while (emojiToUse.length > 5) {
-            let number = Math.floor(Math.random() * emojiList.length);
+            let number = Math.floor(Math.random() * emojiToUse.length);
             emojiToUse.splice(number, 1);
         }
 
