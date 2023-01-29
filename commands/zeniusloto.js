@@ -39,7 +39,7 @@ module.exports = {
         const emojiList = [emoji1, emoji2, emoji3, emoji4, emoji5, emoji6, emoji7, emoji8, emoji9, emoji10];
         //const emojiList = [emoji1, emoji2, emoji3];
 
-        let emojiToUse = emojiList;
+        let emojiToUse = [...emojiList];
 
         while (emojiToUse.length > 5) {
             let number = Math.floor(Math.random() * emojiList.length);
