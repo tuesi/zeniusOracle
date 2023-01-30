@@ -11,62 +11,90 @@ function addLives(discordId) {
     });
 }
 
+async function getLivesSet(discordId) {
+    const response = await fetch(process.env.GET_LIVES_SET_URL + '/?' + new URLSearchParams({
+        discordId: discordId
+    }), {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await response.json();
+    return data.isSet;
+}
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("zeniauslotereja")
         .setDescription("Zeniaus lotereja"),
     async execute(interaction) {
-        const message = await interaction.reply({
-            content: `Zenius tau sako pasirinkti laiminga Emoji!`,
-            fetchReply: true
-        });
-
-        const emoji1 = emoji.getEmoji(interaction, "kiss~1");
-        const emoji2 = emoji.getEmoji(interaction, "pirst");
-        const emoji3 = emoji.getEmoji(interaction, "aurimts");
-        const emoji4 = emoji.getEmoji(interaction, "trusabaka");
-        const emoji5 = emoji.getEmoji(interaction, "fifidleiplaukas");
-        const emoji6 = emoji.getEmoji(interaction, "ojtu");
-        const emoji7 = emoji.getEmoji(interaction, "aurim2");
-        const emoji8 = emoji.getEmoji(interaction, "chicago");
-        const emoji9 = emoji.getEmoji(interaction, "ginispassport");
-        const emoji10 = emoji.getEmoji(interaction, "ct2");
-
-        // const emoji1 = emoji.getEmoji(interaction, "sausginis");
-        // const emoji2 = emoji.getEmoji(interaction, "trusabanis");
-        // const emoji3 = emoji.getEmoji(interaction, "test1");
-
-        const emojiList = [emoji1, emoji2, emoji3, emoji4, emoji5, emoji6, emoji7, emoji8, emoji9, emoji10];
-        //const emojiList = [emoji1, emoji2, emoji3];
-
-        let emojiToUse = [...emojiList];
-
-        while (emojiToUse.length > 5) {
-            let number = Math.floor(Math.random() * emojiToUse.length);
-            emojiToUse.splice(number, 1);
-        }
-
-        const luckyNumber = Math.floor(Math.random() * emojiToUse.length);
-        let luckyEmoji = emojiToUse[luckyNumber];
-
-        emojiToUse.forEach(emoji => {
-            message.react(emoji);
-        });
-
-        const filter = (reaction, user) => {
-            return user.id == interaction.user.id;
-        }
-
-        const collector = message.createReactionCollector({ filter, time: 600000 });
-
-        collector.on('collect', (reaction, user) => {
-            if (reaction.emoji === luckyEmoji) {
-                interaction.followUp(`Laimejai blechamucha ir gavai 1 givybe dzimio kazino NACHER! www.debils.gay`);
-                addLives(interaction.user.id);
+        if (interaction.channel.id === '1069524416729456680') {
+            let message = null;
+            const wasGiven = await getLivesSet(interaction.user.id);
+            if (wasGiven) {
+                await interaction.reply({
+                    content: `Bandyk rytoj, siandien jau sisi baba!`
+                });
             } else {
-                interaction.followUp(`Bandyk rytoj vaikas, pasaudysiu tau i strele kurva naxui!`);
+                message = await interaction.reply({
+                    content: `Zenius tau sako pasirinkti laiminga Emoji!`,
+                    fetchReply: true
+                });
             }
-            collector.stop();
-        });
+
+            if (message !== null) {
+                const emoji1 = emoji.getEmoji(interaction, "kiss~1");
+                const emoji2 = emoji.getEmoji(interaction, "pirst");
+                const emoji3 = emoji.getEmoji(interaction, "aurimts");
+                const emoji4 = emoji.getEmoji(interaction, "trusabaka");
+                const emoji5 = emoji.getEmoji(interaction, "fifidleiplaukas");
+                const emoji6 = emoji.getEmoji(interaction, "ojtu");
+                const emoji7 = emoji.getEmoji(interaction, "aurim2");
+                const emoji8 = emoji.getEmoji(interaction, "chicago");
+                const emoji9 = emoji.getEmoji(interaction, "ginispassport");
+                const emoji10 = emoji.getEmoji(interaction, "ct2");
+
+                // const emoji1 = emoji.getEmoji(interaction, "sausginis");
+                // const emoji2 = emoji.getEmoji(interaction, "trusabanis");
+                // const emoji3 = emoji.getEmoji(interaction, "test1");
+
+                const emojiList = [emoji1, emoji2, emoji3, emoji4, emoji5, emoji6, emoji7, emoji8, emoji9, emoji10];
+                //const emojiList = [emoji1, emoji2, emoji3];
+
+                let emojiToUse = [...emojiList];
+
+                while (emojiToUse.length > 5) {
+                    let number = Math.floor(Math.random() * emojiToUse.length);
+                    emojiToUse.splice(number, 1);
+                }
+
+                const luckyNumber = Math.floor(Math.random() * emojiToUse.length);
+                let luckyEmoji = emojiToUse[luckyNumber];
+
+                emojiToUse.forEach(emoji => {
+                    message.react(emoji);
+                });
+
+                const filter = (reaction, user) => {
+                    return user.id == interaction.user.id;
+                }
+
+                const collector = message.createReactionCollector({ filter, time: 600000 });
+
+                collector.on('collect', (reaction, user) => {
+                    if (reaction.emoji === luckyEmoji) {
+                        interaction.followUp(`Laimejai blechamucha ir gavai 1 gyvybe dzimio kazino NACHER! www.debils.gay`);
+                        addLives(interaction.user.id);
+                    } else {
+                        interaction.followUp(`Bandyk rytoj vaikas, nes tau nepa EJO!`);
+                    }
+                    collector.stop();
+                });
+            }
+        } else {
+            await interaction.reply({
+                content: `Sita komanda galima naudoti tik zeniusloto chate!`,
+                ephemeral: true
+            });
+        }
     }
 }
