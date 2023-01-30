@@ -18,8 +18,12 @@ async function getLivesSet(discordId) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     });
-    const data = await response.json();
-    return data.isSet;
+    if (response.status === 204) {
+        return false;
+    } else {
+        const data = await response.json();
+        return data.isSet;
+    }
 }
 
 module.exports = {
