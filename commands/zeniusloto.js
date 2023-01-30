@@ -65,16 +65,36 @@ module.exports = {
                 const emoji9 = emoji.getEmoji(interaction, "ginispassport");
                 const emoji10 = emoji.getEmoji(interaction, "ct2");
 
-                console.log(emoji1.name);
-                console.log(emoji2.name);
-                console.log(emoji3.name);
-                console.log(emoji4.name);
-                console.log(emoji5.name);
-                console.log(emoji6.name);
-                console.log(emoji7.name);
-                console.log(emoji8.name);
-                console.log(emoji9.name);
-                console.log(emoji10.name);
+                if (emoji1) {
+                    console.log(emoji1.name);
+                }
+                if (emoji2) {
+                    console.log(emoji2.name);
+                }
+                if (emoji3) {
+                    console.log(emoji3.name);
+                }
+                if (emoji4) {
+                    console.log(emoji4.name);
+                }
+                if (emoji5) {
+                    console.log(emoji5.name);
+                }
+                if (emoji6) {
+                    console.log(emoji6.name);
+                }
+                if (emoji7) {
+                    console.log(emoji7.name);
+                }
+                if (emoji8) {
+                    console.log(emoji8.name);
+                }
+                if (emoji9) {
+                    console.log(emoji9.name);
+                }
+                if (emoji10) {
+                    console.log(emoji10.name);
+                }
 
                 // const emoji1 = emoji.getEmoji(interaction, "sausginis");
                 // const emoji2 = emoji.getEmoji(interaction, "trusabanis");
