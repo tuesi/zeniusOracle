@@ -114,7 +114,6 @@ module.exports = {
                 let luckyEmoji = emojiToUse[luckyNumber];
 
                 emojiToUse.forEach(emoji => {
-                    console.log(emoji.name);
                     message.react(emoji);
                 });
 
