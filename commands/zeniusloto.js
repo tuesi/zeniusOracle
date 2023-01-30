@@ -11,6 +11,14 @@ function addLives(discordId) {
     });
 }
 
+function setWasGiven(discordId) {
+    fetch(process.env.SET_GIVEN_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ secret: `${process.env.SECRET}`, discordId: `${discordId}` })
+    });
+}
+
 async function getLivesSet(discordId) {
     const response = await fetch(process.env.GET_LIVES_SET_URL + '/?' + new URLSearchParams({
         discordId: discordId
@@ -75,6 +83,7 @@ module.exports = {
                 let luckyEmoji = emojiToUse[luckyNumber];
 
                 emojiToUse.forEach(emoji => {
+                    console.log(emoji);
                     message.react(emoji);
                 });
 
@@ -90,6 +99,7 @@ module.exports = {
                         addLives(interaction.user.id);
                     } else {
                         interaction.followUp(`Bandyk rytoj vaikas, nes tau nepa EJO!`);
+                        setWasGiven(interaction.user.id);
                     }
                     collector.stop();
                 });
