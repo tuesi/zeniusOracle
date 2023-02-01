@@ -97,7 +97,7 @@ module.exports = {
                         interaction.followUp(`Laimejai blechamucha ir gavai 1 gyvybe dzimio kazino NACHER! www.debils.gay`);
                         addLives(interaction.user.id);
                     } else {
-                        interaction.followUp(`Bandyk rytoj vaikas, nes tau nepa EJO!`);
+                        interaction.followUp(`Bandyk rytoj vaikas, nes tau nepa EJO! Laimingas Emoji buvo ${luckyEmoji}`);
                         setWasGiven(interaction.user.id);
                     }
                     collector.stop();
