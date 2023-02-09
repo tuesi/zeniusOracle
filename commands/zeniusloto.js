@@ -34,6 +34,8 @@ async function getLivesSet(discordId) {
     }
 }
 
+playingUsers = [];
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("zeniauslotereja")
@@ -41,19 +43,29 @@ module.exports = {
     async execute(interaction) {
         if (interaction.channel.id === '1069524416729456680') {
             let message = null;
+            let hasNoPendingMessages = false;
             const wasGiven = await getLivesSet(interaction.user.id);
-            if (wasGiven) {
+            if (playingUsers.indexOf(interaction.user.id) == -1) {
+                playingUsers.push(interaction.user.id);
+                hasNoPendingMessages = true;
+            } else {
+                await interaction.reply({
+                    content: `Rinkis Emoji amare tu!`
+                });
+            }
+
+            if (wasGiven && hasNoPendingMessages) {
                 await interaction.reply({
                     content: `Bandyk rytoj, siandien jau sisi baba!`
                 });
-            } else {
+            } else if (hasNoPendingMessages) {
                 message = await interaction.reply({
                     content: `Zenius tau sako pasirinkti laiminga Emoji!`,
                     fetchReply: true
                 });
             }
 
-            if (message !== null) {
+            if (message !== null && hasNoPendingMessages) {
                 const emoji1 = emoji.getEmoji(interaction, "noo");
                 const emoji2 = emoji.getEmoji(interaction, "pirst");
                 const emoji3 = emoji.getEmoji(interaction, "aurimts");
@@ -90,7 +102,7 @@ module.exports = {
                     return user.id == interaction.user.id;
                 }
 
-                const collector = message.createReactionCollector({ filter, time: 600000 });
+                const collector = message.createReactionCollector({ filter });
 
                 collector.on('collect', (reaction, user) => {
                     if (reaction.emoji === luckyEmoji) {
@@ -100,6 +112,7 @@ module.exports = {
                         interaction.followUp(`Bandyk rytoj vaikas, nes tau nepa EJO! Laimingas Emoji buvo ${luckyEmoji}`);
                         setWasGiven(interaction.user.id);
                     }
+                    playingUsers.splice(playingUsers.indexOf(interaction.user.id), 1);
                     collector.stop();
                 });
             }
