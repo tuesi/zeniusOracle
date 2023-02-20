@@ -55,6 +55,7 @@ module.exports = {
             }
 
             if (wasGiven && hasNoPendingMessages) {
+                playingUsers.splice(playingUsers.indexOf(interaction.user.id), 1);
                 await interaction.reply({
                     content: `Bandyk rytoj, siandien jau sisi baba!`
                 });
