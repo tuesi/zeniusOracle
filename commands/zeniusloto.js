@@ -1,7 +1,10 @@
-const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder } = require("@discordjs/builders");
-const { ButtonStyle, DiscordJS } = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { DiscordJS } = require("discord.js");
 const emoji = require('../utils/emojiFinder');
 const fetch = require('node-fetch');
+const { raskLaiminga } = require('../games/rask_laiminga');
+const { raskSubineika } = require('../games/rask_subineika');
+const { raskVienodus } = require('../games/rask_vienodus');
 
 function addLives(discordId) {
     fetch(process.env.ADD_LIVES_URL, {
@@ -35,6 +38,7 @@ async function getLivesSet(discordId) {
 }
 
 playingUsers = [];
+games = [raskLaiminga, raskSubineika, raskVienodus];
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -53,11 +57,6 @@ module.exports = {
         // const emoji9 = emoji.getEmoji(interaction, "ginispassport");
         // const emoji10 = emoji.getEmoji(interaction, "ct2");
 
-        const embed = new EmbedBuilder()
-            .setColor(0x0099FF)
-            .setTitle('Lotereja')
-            .setDescription('Pasirink laiminga emoji');
-
         const emoji1 = emoji.getEmoji(interaction, "test1");
         const emoji2 = emoji.getEmoji(interaction, "sausginis");
         const emoji3 = emoji.getEmoji(interaction, "trusabanis");
@@ -69,7 +68,6 @@ module.exports = {
         const emoji9 = emoji.getEmoji(interaction, "song");
 
         if (interaction.channel.id !== '1069524416729456680') {
-            let message = null;
             let hasNoPendingMessages = false;
             //const wasGiven = await getLivesSet(interaction.user.id);
             const wasGiven = false;
@@ -78,7 +76,7 @@ module.exports = {
                 hasNoPendingMessages = true;
             } else {
                 await interaction.reply({
-                    content: `Rinkis Emoji amare tu!`
+                    content: `Pabaik paskutini zaidima amare tu!`
                 });
             }
 
@@ -96,59 +94,15 @@ module.exports = {
                 //const emojiList = [emoji1, emoji2, emoji3, emoji4, emoji5, emoji6, emoji7, emoji8, emoji9, emoji10];
                 const emojiList = [emoji1, emoji2, emoji3, emoji4, emoji5, emoji6, emoji7, emoji8, emoji9];
 
-                let emojiToUse = [...emojiList];
-                const buttons = [];
-
-                while (emojiToUse.length > 5) {
-                    let number = Math.floor(Math.random() * emojiToUse.length);
-                    emojiToUse.splice(number, 1);
+                const result = await games[1](interaction, emojiList, playingUsers);
+                console.log(result);
+                if (result === true) {
+                    console.log('GIVE THE PRIZE!');
+                    //addLives(interaction.user.id);
+                } else if (result === false) {
+                    console.log('YOU ARE SHIT!');
+                    //setWasGiven(interaction.user.id);
                 }
-
-                for (var i = 0; i < 5; i++) {
-                    let button = new ButtonBuilder()
-                        .setCustomId('primary' + i)
-                        .setStyle(ButtonStyle.Secondary)
-                        .setEmoji({ id: emojiToUse[i].id });
-                    buttons.push(button);
-                }
-
-                const row = new ActionRowBuilder()
-                    .addComponents(buttons[0], buttons[1], buttons[2], buttons[3], buttons[4]);
-
-                await interaction.reply({ embeds: [embed], components: [row] });
-
-                const luckyNumber = Math.floor(Math.random() * emojiToUse.length);
-
-                const filter = i => i.user.id === interaction.user.id;
-
-                const collector = interaction.channel.createMessageComponentCollector({ filter });
-
-                collector.on('collect', async button => {
-                    let buttonClickedIndex = buttons.findIndex(el => el.data.custom_id === button.customId);
-                    console.log(buttonClickedIndex);
-                    console.log(luckyNumber);
-                    if (buttonClickedIndex === luckyNumber) {
-                        buttons[buttonClickedIndex].setStyle(ButtonStyle.Success);
-                        embed.addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: true })
-                        await button.update({ embeds: [embed], components: [row] });
-                        //addLives(interaction.user.id);
-                    } else {
-                        buttons[buttonClickedIndex].setStyle(ButtonStyle.Danger);
-                        buttons[luckyNumber].setStyle(ButtonStyle.Success);
-                        embed.addFields({ name: 'Rezultatas', value: 'Pralaimėjai', inline: true })
-                        await button.update({ embeds: [embed], components: [row] });
-                        //setWasGiven(interaction.user.id);
-                    }
-                    // if (reaction.emoji === luckyEmoji) {
-                    //     interaction.followUp(`Laimejai blechamucha ir gavai 1 gyvybe dzimio kazino NACHER! www.debils.gay`);
-                    //     addLives(interaction.user.id);
-                    // } else {
-                    //     interaction.followUp(`Bandyk rytoj vaikas, nes tau nepa EJO! Laimingas Emoji buvo ${luckyEmoji}`);
-                    //     setWasGiven(interaction.user.id);
-                    // }
-                    playingUsers.splice(playingUsers.indexOf(interaction.user.id), 1);
-                    collector.stop();
-                });
             }
         } else {
             await interaction.reply({
