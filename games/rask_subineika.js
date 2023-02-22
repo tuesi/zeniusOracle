@@ -28,7 +28,7 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
     for (var i = 0; i < 9; i++) {
         let button = new ButtonBuilder()
             .setCustomId('primary' + i)
-            .setStyle(ButtonStyle.Primary)
+            .setStyle(ButtonStyle.Secondary)
             .setEmoji({ id: emojiToUse[0].id });
 
         buttons.push(button);
