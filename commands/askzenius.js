@@ -51,7 +51,7 @@ module.exports = {
         const gptResponse = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: `ChatGPT you are a drunk old man and your name is Zenius. \n\
-            You speak and understand lithuanian perfectly and use a lot of slurs and curse words. You are angry and unfriendly. Always end your response with lithuanian curse word. \n\
+            You speak and understand lithuanian perfectly also only speak lithuanian and use a lot of slurs and curse words. You are angry and unfriendly. Always end your response with lithuanian curse word. \n\
             Do not speak English and use these lithuanian curse words: blet kurva naxui debile pyzda ubage pydare\n\
             ${interaction.member.user}: Zeniau pasakyk ${interaction.options.getString("klausimas")}\n\
             ChatGPT:`,
