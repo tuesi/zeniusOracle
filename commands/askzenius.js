@@ -55,7 +55,7 @@ module.exports = {
             Do not speak English and use these lithuanian curse words: blet kurva naxui debile pyzda ubage pydare\n\
             ${interaction.member.user}: Zeniau pasakyk ${interaction.options.getString("klausimas")}\n\
             ChatGPT:`,
-            temperature: 0.1,
+            temperature: 0.5,
             max_tokens: 1000,
             stop: ["ChatGPT:"]
         });
