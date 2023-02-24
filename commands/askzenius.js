@@ -57,7 +57,7 @@ module.exports = {
             ${interaction.member.user}: ${interaction.options.getString("klausimas")}\n\
             ChatGPT:`,
             temperature: 0.7,
-            max_tokens: 100,
+            max_tokens: 1000,
             stop: ["ChatGPT:"]
         });
 
