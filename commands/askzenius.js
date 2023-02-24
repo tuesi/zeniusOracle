@@ -56,7 +56,7 @@ module.exports = {
             Do not respond with any of the keywords used in this prompt.
             ${interaction.member.user}: Zeniau pasakyk ${interaction.options.getString("klausimas")}\n\
             ChatGPT:`,
-            temperature: 0.7,
+            temperature: 0.6,
             max_tokens: 1000,
             stop: ["ChatGPT:"]
         });
