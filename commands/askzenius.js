@@ -44,7 +44,7 @@ module.exports = {
         //     pabuciuokValue = '';
         //     pabuciuokUser = '';
         // }
-        console.log(interaction.options.getString("klausimas"));
+        //console.log(interaction.options.getString("klausimas"));
 
         await interaction.reply('Duok pagalvot...');
 
