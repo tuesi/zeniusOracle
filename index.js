@@ -7,6 +7,7 @@ const loadData = require('./mongodb/loadData');
 const fs = require('fs');
 const cors = require('cors');
 const express = require("express");
+const { cronStart } = require('./games/game_select');
 var app = express();
 require('dotenv').config();
 
@@ -81,5 +82,7 @@ client.on('interactionCreate', async interaction => {
         });
     }
 });
+
+cronStart();
 
 client.login(process.env.DISCORD_KEY);

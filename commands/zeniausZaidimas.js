@@ -12,18 +12,7 @@ module.exports = {
         const emoji2 = emoji.getEmoji(interaction, "sausginis");
         const emoji3 = emoji.getEmoji(interaction, "trusabanis");
 
-        const buttons = [];
 
-        for (var i = 0; i < 9; i++) {
-            let button = new ButtonBuilder()
-                .setCustomId('primary' + i)
-                .setStyle(ButtonStyle.Primary)
-                .setEmoji({ id: emoji1.id });
-
-            buttons.push(button);
-        }
-
-        const luckyButtonIndex = Math.floor(Math.random() * buttons.length);
 
         // const button1 = new ButtonBuilder()
         // .setCustomId('primary1')
@@ -74,39 +63,6 @@ module.exports = {
         // .setStyle(ButtonStyle.Secondary)
         // .setEmoji({id:emoji1.id});
 
-        const row = new ActionRowBuilder()
-            .addComponents(buttons[0], buttons[1], buttons[2]);
 
-        const row2 = new ActionRowBuilder()
-            .addComponents(buttons[3], buttons[4], buttons[5]);
-
-        const row3 = new ActionRowBuilder()
-            .addComponents(buttons[6], buttons[7], buttons[8]);
-
-        await interaction.reply({ components: [row, row2, row3] });
-
-        const filter = i => i.user.id === interaction.user.id;
-
-        const collector = interaction.channel.createMessageComponentCollector({ filter });
-
-        collector.on('collect', async button => {
-            let buttonClickedIndex = buttons.findIndex(el => el.data.custom_id === button.customId);
-            for (var i = 0; i < 9; i++) {
-                if (i === luckyButtonIndex) {
-                    buttons[i].data.emoji = { id: emoji2.id };
-                } else {
-                    buttons[i].data.emoji = { id: emoji3.id };
-                }
-            }
-            if (buttonClickedIndex === luckyButtonIndex) {
-                buttons[buttonClickedIndex].setStyle(ButtonStyle.Success);
-                await button.update({ content: `LAIMEJAI!`, components: [row, row2, row3] });
-
-            } else {
-                buttons[buttonClickedIndex].setStyle(ButtonStyle.Danger);
-                await button.update({ content: `BANDYK RYTOJ`, components: [row, row2, row3] });
-            }
-            collector.stop();
-        });
     }
 }

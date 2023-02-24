@@ -1,7 +1,32 @@
 const { ButtonBuilder, ActionRowBuilder, EmbedBuilder } = require("@discordjs/builders");
 const { ButtonStyle, DiscordJS } = require("discord.js");
+const emoji = require('../utils/emojiFinder');
+
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
 
 async function raskSubineika(interaction, emojiList, playingUsers) {
+
+    const subineika = emoji.getEmoji(interaction, "pirst");
+
+    const aurimts = emoji.getEmoji(interaction, "aurimts");
+
+    const ojtu = emoji.getEmoji(interaction, "ojtu");
 
     let gameOutcome;
 
@@ -12,24 +37,15 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
 
     const embed = new EmbedBuilder()
         .setColor(0x0099FF)
-        .setTitle('Lotereja')
-        .setDescription('Rask subineika!')
-        .addFields({ name: 'Liko spejimu', value: `${movesLeft}`, inline: true });
-
-    while (emojiToUse.length > 9) {
-        let number = Math.floor(Math.random() * emojiToUse.length);
-        emojiToUse.splice(number, 1);
-    }
-
-    //shuffle emojis every time since there will only be one extra
-    //Take out subineika emoji
-    // or take one random or not random emoji (just use one simple emoji and one subineika)
+        .setTitle('Loterėja')
+        .setDescription('Rask subineiką!')
+        .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true });
 
     for (var i = 0; i < 9; i++) {
         let button = new ButtonBuilder()
             .setCustomId('primary' + i)
             .setStyle(ButtonStyle.Secondary)
-            .setEmoji({ id: emojiToUse[0].id });
+            .setEmoji({ id: aurimts.id });
 
         buttons.push(button);
     }
@@ -57,25 +73,25 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
             if (movesLeft > 0) {
                 if (buttonClickedIndex === luckyButtonIndex) {
                     buttons[buttonClickedIndex].setStyle(ButtonStyle.Success);
-                    buttons[buttonClickedIndex].data.emoji = { id: emojiToUse[1].id };
+                    buttons[buttonClickedIndex].data.emoji = { id: subineika.id };
                 } else {
                     buttons[buttonClickedIndex].setStyle(ButtonStyle.Danger);
-                    buttons[buttonClickedIndex].data.emoji = { id: emojiToUse[2].id };
+                    buttons[buttonClickedIndex].data.emoji = { id: ojtu.id };
                 }
                 movesLeft -= 1;
                 if (movesLeft > 0 && buttonClickedIndex !== luckyButtonIndex) {
                     const embed = new EmbedBuilder()
                         .setColor(0x0099FF)
-                        .setTitle('Lotereja')
-                        .setDescription('Rask subineika!')
-                        .addFields({ name: 'Liko spejimu', value: `${movesLeft}`, inline: true });
+                        .setTitle('Loterėja')
+                        .setDescription('Rask subineiką!')
+                        .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true });
                     await button.update({ embeds: [embed], components: [row, row2, row3] });
                 } else {
                     for (var i = 0; i < 9; i++) {
                         if (i === luckyButtonIndex) {
-                            buttons[i].data.emoji = { id: emojiToUse[1].id };
+                            buttons[i].data.emoji = { id: subineika.id };
                         } else {
-                            buttons[i].data.emoji = { id: emojiToUse[2].id };
+                            buttons[i].data.emoji = { id: ojtu.id };
                         }
                     }
                 }
@@ -84,20 +100,20 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
             if (buttonClickedIndex === luckyButtonIndex) {
                 const embed = new EmbedBuilder()
                     .setColor(0x0099FF)
-                    .setTitle('Lotereja')
-                    .setDescription('Rask subineika!')
-                    .addFields({ name: 'Liko spejimu', value: `${movesLeft}`, inline: true })
-                    .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: true });
+                    .setTitle('Loterėja')
+                    .setDescription('Rask subineiką!')
+                    .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true })
+                    .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false });
                 await button.update({ embeds: [embed], components: [row, row2, row3] });
                 gameOutcome = true;
 
             } else if (movesLeft === 0) {
                 const embed = new EmbedBuilder()
                     .setColor(0x0099FF)
-                    .setTitle('Lotereja')
-                    .setDescription('Rask subineika!')
-                    .addFields({ name: 'Liko spejimu', value: `${movesLeft}`, inline: true })
-                    .addFields({ name: 'Rezultatas', value: 'Pralaimėjai', inline: true });
+                    .setTitle('Loterėja')
+                    .setDescription('Rask subineiką!')
+                    .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true })
+                    .addFields({ name: 'Rezultatas', value: 'Pralaimėjai', inline: false });
                 await button.update({ embeds: [embed], components: [row, row2, row3] });
                 gameOutcome = false;
             }

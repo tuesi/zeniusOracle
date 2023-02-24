@@ -17,8 +17,8 @@ async function raskLaiminga(interaction, emojiList, playingUsers) {
 
     const embed = new EmbedBuilder()
         .setColor(0x0099FF)
-        .setTitle('Lotereja')
-        .setDescription('Rask laiminga emoji!');
+        .setTitle('Loterėja')
+        .setDescription('Rask laimingą emoji!');
 
     for (var i = 0; i < 5; i++) {
         let button = new ButtonBuilder()
@@ -42,8 +42,6 @@ async function raskLaiminga(interaction, emojiList, playingUsers) {
     const promise = new Promise((resolve, reject) => {
         collector.on('collect', async button => {
             let buttonClickedIndex = buttons.findIndex(el => el.data.custom_id === button.customId);
-            console.log(buttonClickedIndex);
-            console.log(luckyNumber);
             if (buttonClickedIndex === luckyNumber) {
                 buttons[buttonClickedIndex].setStyle(ButtonStyle.Success);
                 embed.addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: true });

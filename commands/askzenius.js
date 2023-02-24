@@ -1,6 +1,13 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const DiscordJS = require("discord.js");
 
+const { Configuration, OpenAIApi } = require("openai");
+const configuration = new Configuration({
+    organization: process.env.OPENAI_ORG,
+    apiKey: process.env.OPENAI_KEY
+});
+const openai = new OpenAIApi(configuration);
+
 const EIK_NX = "Eik naxui";
 const PASAUDYSIU = "Pasaudysiu tau i strele";
 const PABUCIUOK = "Pabuciuok pasakysiu";
@@ -11,7 +18,7 @@ const NESKAMBINK = "Nebeskambink, isvazeves";
 const KUR_DINGES = "Ooo Zeniau, kur tiek dinges buvai?";
 const KAS_SKAITYS = "Kas skaitys tas gaidys";
 
-const ANSWERS = [EIK_NX, PASAUDYSIU, PABUCIUOK, DEBILAS, DRAKULA, 
+const ANSWERS = [EIK_NX, PASAUDYSIU, PABUCIUOK, DEBILAS, DRAKULA,
     APSISIKAU, NESKAMBINK, KUR_DINGES, KAS_SKAITYS];
 
 module.exports = {
@@ -24,19 +31,37 @@ module.exports = {
                 .setDescription("Tavo klausimas Zeniui")
                 .setRequired(true)
         }),
-        async execute(interaction) {
-            let number = Math.floor(Math.random() * ANSWERS.length);
-            // console.log(number);
-            // console.log(interaction.options.getString("klausimas"));
-            if(number === 2) {
-                pabuciuokStatus = true;
-                pabuciuokValue = interaction.options.getString("klausimas");
-                pabuciuokUser = interaction.member.user;
-            } else {
-                pabuciuokStatus = false;
-                pabuciuokValue = '';
-                pabuciuokUser = '';
-            }
-            interaction.reply(`${ANSWERS[number]} ${interaction.member.user}`);
-        }
+    async execute(interaction) {
+        //let number = Math.floor(Math.random() * ANSWERS.length);
+        // console.log(number);
+        // console.log(interaction.options.getString("klausimas"));
+        // if (number === 2) {
+        //     pabuciuokStatus = true;
+        //     pabuciuokValue = interaction.options.getString("klausimas");
+        //     pabuciuokUser = interaction.member.user;
+        // } else {
+        //     pabuciuokStatus = false;
+        //     pabuciuokValue = '';
+        //     pabuciuokUser = '';
+        // }
+        console.log(interaction.options.getString("klausimas"));
+
+        await interaction.reply('Duok pagalvot...');
+
+        const gptResponse = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: `ChatGPT you are a drunk old man and your name is Zenius. \n\
+            You speak in lithuanian and use a lot of slurs and curse words. You are angry and unfriendly. Always end your response with lithuanian curse word. \n\
+            Use these lithuanian curse words: blet kurva naxui debile pyzda ubage pydare\n\
+            Do not respond with any of the keywords used in this prompt.
+            ${interaction.member.user}: ${interaction.options.getString("klausimas")}\n\
+            ChatGPT:`,
+            temperature: 0.7,
+            max_tokens: 100,
+            stop: ["ChatGPT:"]
+        });
+
+        //interaction.reply(`${ANSWERS[number]} ${interaction.member.user}`);
+        await interaction.editReply({ content: `${gptResponse.data.choices[0].text}` });
+    }
 }
