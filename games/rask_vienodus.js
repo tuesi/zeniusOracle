@@ -10,7 +10,9 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
     const buttons = [];
     let emojiUsedCount = [0, 0, 0, 0, 0, 0, 0, 0];
     let emojiToUse = [...emojiList];
-    let mainEmoji = emojiToUse[0].id;
+    let mainEmoji = emojiToUse[2].id;
+
+    emojiToUse.slice(emojiToUse.indexOf(mainEmoji), 1);
 
     while (emojiToUse.length > 8) {
         let number = Math.floor(Math.random() * emojiToUse.length);
@@ -130,7 +132,8 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                         .setTitle('Loterėja')
                         .setDescription('Rask visus vienodus!')
                         .addFields({ name: 'Liko ėjimų', value: `${moves}`, inline: true })
-                        .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false });
+                        .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false })
+                        .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debis.gay', inline: true });
                     await button.update({ embeds: [embed], components: [row, row2, row3, row4, quitRow] });
                     gameOutcome = true;
                 } else {

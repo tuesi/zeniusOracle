@@ -1,6 +1,6 @@
 const cron = require('node-cron');
 
-let currentGame = 0
+let currentGame = process.env.INITIAL_GAME;
 
 function cronStart() {
     var job = cron.schedule('00 22 * * *', async function () {

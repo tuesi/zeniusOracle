@@ -45,6 +45,7 @@ async function raskLaiminga(interaction, emojiList, playingUsers) {
             if (buttonClickedIndex === luckyNumber) {
                 buttons[buttonClickedIndex].setStyle(ButtonStyle.Success);
                 embed.addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: true });
+                embed.addFields({ name: 'Gavai 1 gyvybę', value: 'www.debis.gay', inline: true });
                 await button.update({ embeds: [embed], components: [row] });
                 gameOutcome = true;
             } else {

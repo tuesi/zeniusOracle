@@ -103,7 +103,8 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
                     .setTitle('Loterėja')
                     .setDescription('Rask subineiką!')
                     .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true })
-                    .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false });
+                    .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false })
+                    .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debis.gay', inline: true });
                 await button.update({ embeds: [embed], components: [row, row2, row3] });
                 gameOutcome = true;
 
