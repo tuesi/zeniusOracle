@@ -14,7 +14,7 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
     let mainEmoji = emojiToUse[2].id;
 
     //Remove emoji ant index 2, because it is the main game emoji
-    emojiToUse.slice(2, 1);
+    emojiToUse.splice(2, 1);
 
     while (emojiToUse.length > 8) {
         let number = Math.floor(Math.random() * emojiToUse.length);
@@ -105,7 +105,9 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                         pairs.forEach((item, index) => {
                             if (pairsFound.indexOf(item) !== -1) {
                                 buttons[index].setStyle(ButtonStyle.Success);
-                                lastMove = true;
+                                if (moves === 0) {
+                                    lastMove = true;
+                                }
                             }
                         })
                     }
