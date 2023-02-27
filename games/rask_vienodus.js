@@ -6,7 +6,6 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
     const maxMoves = 28;
 
     let gameOutcome;
-    let lastMove = false;
 
     const buttons = [];
     let emojiUsedCount = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -105,9 +104,6 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                         pairs.forEach((item, index) => {
                             if (pairsFound.indexOf(item) !== -1) {
                                 buttons[index].setStyle(ButtonStyle.Success);
-                                if (moves === 0) {
-                                    lastMove = true;
-                                }
                             }
                         })
                     }
@@ -122,7 +118,7 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                 }
                 currentSelected = pairs[buttonClickedIndex].id;
 
-                if (moves === 0 && lastMove === false) {
+                if (moves === 0 && pairsFound.length !== 8) {
                     const embed = new EmbedBuilder()
                         .setColor(0x0099FF)
                         .setTitle('Loterėja')
