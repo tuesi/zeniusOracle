@@ -6,13 +6,15 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
     const maxMoves = 28;
 
     let gameOutcome;
+    let lastMove = false;
 
     const buttons = [];
     let emojiUsedCount = [0, 0, 0, 0, 0, 0, 0, 0];
     let emojiToUse = [...emojiList];
     let mainEmoji = emojiToUse[2].id;
 
-    emojiToUse.slice(emojiToUse.indexOf(mainEmoji), 1);
+    //Remove emoji ant index 2, because it is the main game emoji
+    emojiToUse.slice(2, 1);
 
     while (emojiToUse.length > 8) {
         let number = Math.floor(Math.random() * emojiToUse.length);
@@ -103,6 +105,7 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                         pairs.forEach((item, index) => {
                             if (pairsFound.indexOf(item) !== -1) {
                                 buttons[index].setStyle(ButtonStyle.Success);
+                                lastMove = true;
                             }
                         })
                     }
@@ -117,7 +120,7 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                 }
                 currentSelected = pairs[buttonClickedIndex].id;
 
-                if (moves === 0) {
+                if (moves === 0 && lastMove === false) {
                     const embed = new EmbedBuilder()
                         .setColor(0x0099FF)
                         .setTitle('Loterėja')
@@ -134,7 +137,7 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                         .addFields({ name: 'Liko ėjimų', value: `${moves}`, inline: true })
                         .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false })
                         .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debis.gay', inline: true });
-                    await button.update({ embeds: [embed], components: [row, row2, row3, row4, quitRow] });
+                    await button.update({ embeds: [embed], components: [row, row2, row3, row4] });
                     gameOutcome = true;
                 } else {
                     const embed = new EmbedBuilder()
@@ -143,6 +146,7 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                         .setDescription('Rask visus vienodus!')
                         .addFields({ name: 'Liko ėjimų', value: `${moves}`, inline: true });
                     await button.update({ embeds: [embed], components: [row, row2, row3, row4, quitRow] });
+                    lastMove = false;
                 }
                 if (pairsFound.length === 8 || moves === 0) {
                     playingUsers.splice(playingUsers.indexOf(interaction.user.id), 1);
