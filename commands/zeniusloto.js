@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 const { raskLaiminga } = require('../games/rask_laiminga');
 const { raskSubineika } = require('../games/rask_subineika');
 const { raskVienodus } = require('../games/rask_vienodus');
+const { pamarskomuPriesZeniu } = require('../games/pamarskomu_pries_zeniu');
 const currentGame = require('../games/game_select');
 
 function addLives(discordId) {
@@ -39,36 +40,36 @@ async function getLivesSet(discordId) {
 }
 
 playingUsers = [];
-games = [raskLaiminga, raskSubineika, raskVienodus];
+games = [raskLaiminga, raskSubineika, raskVienodus, pamarskomuPriesZeniu];
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("zeniauslotereja")
         .setDescription("Zeniaus lotereja"),
     async execute(interaction) {
-        const emoji1 = emoji.getEmoji(interaction, "noo");
-        const emoji2 = emoji.getEmoji(interaction, "pirst");
-        const emoji3 = emoji.getEmoji(interaction, "aurimts");
-        const emoji4 = emoji.getEmoji(interaction, "trusabaka");
-        const emoji5 = emoji.getEmoji(interaction, "fifidleiplaukas");
-        const emoji6 = emoji.getEmoji(interaction, "ojtu");
-        const emoji7 = emoji.getEmoji(interaction, "aurim2");
-        const emoji8 = emoji.getEmoji(interaction, "chicago");
-        const emoji9 = emoji.getEmoji(interaction, "ginispassport");
-        const emoji10 = emoji.getEmoji(interaction, "ct2");
+        // const emoji1 = emoji.getEmoji(interaction, "noo");
+        // const emoji2 = emoji.getEmoji(interaction, "pirst");
+        // const emoji3 = emoji.getEmoji(interaction, "aurimts");
+        // const emoji4 = emoji.getEmoji(interaction, "trusabaka");
+        // const emoji5 = emoji.getEmoji(interaction, "fifidleiplaukas");
+        // const emoji6 = emoji.getEmoji(interaction, "ojtu");
+        // const emoji7 = emoji.getEmoji(interaction, "aurim2");
+        // const emoji8 = emoji.getEmoji(interaction, "chicago");
+        // const emoji9 = emoji.getEmoji(interaction, "ginispassport");
+        // const emoji10 = emoji.getEmoji(interaction, "ct2");
 
 
         // ‎
 
-        // const emoji1 = emoji.getEmoji(interaction, "test1");
-        // const emoji2 = emoji.getEmoji(interaction, "sausginis");
-        // const emoji3 = emoji.getEmoji(interaction, "trusabanis");
-        // const emoji4 = emoji.getEmoji(interaction, "obuo");
-        // const emoji5 = emoji.getEmoji(interaction, "zinios");
-        // const emoji6 = emoji.getEmoji(interaction, "zverioga");
-        // const emoji7 = emoji.getEmoji(interaction, "black");
-        // const emoji8 = emoji.getEmoji(interaction, "fokume");
-        // const emoji9 = emoji.getEmoji(interaction, "song");
+        const emoji1 = emoji.getEmoji(interaction, "test1");
+        const emoji2 = emoji.getEmoji(interaction, "sausginis");
+        const emoji3 = emoji.getEmoji(interaction, "trusabanis");
+        const emoji4 = emoji.getEmoji(interaction, "obuo");
+        const emoji5 = emoji.getEmoji(interaction, "zinios");
+        const emoji6 = emoji.getEmoji(interaction, "zverioga");
+        const emoji7 = emoji.getEmoji(interaction, "black");
+        const emoji8 = emoji.getEmoji(interaction, "fokume");
+        const emoji9 = emoji.getEmoji(interaction, "song");
 
         if (interaction.channel.id === '1069524416729456680') {
             let hasNoPendingMessages = false;
@@ -94,7 +95,7 @@ module.exports = {
                 //const emojiList = [emoji1, emoji2, emoji3, emoji4, emoji5, emoji6, emoji7, emoji8, emoji9];
 
                 const result = await games[currentGame.getCurrentGame()](interaction, emojiList, playingUsers);
-                //const result = await games[2](interaction, emojiList, playingUsers);
+                //const result = await games[3](interaction, emojiList, playingUsers);
                 if (result === true) {
                     //console.log('GIVE THE PRIZE!');
                     addLives(interaction.user.id);

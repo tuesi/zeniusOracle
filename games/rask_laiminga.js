@@ -5,8 +5,6 @@ async function raskLaiminga(interaction, emojiList, playingUsers) {
 
     let gameOutcome;
 
-    const games = [raskLaiminga];
-
     const buttons = [];
     let emojiToUse = [...emojiList];
 
@@ -44,6 +42,7 @@ async function raskLaiminga(interaction, emojiList, playingUsers) {
             let buttonClickedIndex = buttons.findIndex(el => el.data.custom_id === button.customId);
             if (buttonClickedIndex === luckyNumber) {
                 buttons[buttonClickedIndex].setStyle(ButtonStyle.Success);
+                embed.setColor(0x00FF99);
                 embed.addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: true });
                 embed.addFields({ name: 'Gavai 1 gyvybę', value: 'www.debis.gay', inline: true });
                 await button.update({ embeds: [embed], components: [row] });
@@ -51,6 +50,7 @@ async function raskLaiminga(interaction, emojiList, playingUsers) {
             } else {
                 buttons[buttonClickedIndex].setStyle(ButtonStyle.Danger);
                 buttons[luckyNumber].setStyle(ButtonStyle.Success);
+                embed.setColor(0xFF0000);
                 embed.addFields({ name: 'Rezultatas', value: 'Pralaimėjai', inline: true });
                 await button.update({ embeds: [embed], components: [row] });
                 gameOutcome = false;

@@ -4,7 +4,7 @@ let currentGame = process.env.INITIAL_GAME;
 
 function cronStart() {
     var job = cron.schedule('00 22 * * *', async function () {
-        const randomNum = Math.floor(Math.random() * 3);
+        const randomNum = Math.floor(Math.random() * 4);
         currentGame = randomNum;
     }, null, true, 'Europe/Vilnius');
 

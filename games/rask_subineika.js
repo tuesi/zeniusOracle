@@ -99,7 +99,7 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
 
             if (buttonClickedIndex === luckyButtonIndex) {
                 const embed = new EmbedBuilder()
-                    .setColor(0x0099FF)
+                    .setColor(0x00FF99)
                     .setTitle('Loterėja')
                     .setDescription('Rask subineiką!')
                     .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true })
@@ -110,7 +110,7 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
 
             } else if (movesLeft === 0) {
                 const embed = new EmbedBuilder()
-                    .setColor(0x0099FF)
+                    .setColor(0xFF0000)
                     .setTitle('Loterėja')
                     .setDescription('Rask subineiką!')
                     .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true })

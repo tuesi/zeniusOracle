@@ -3,7 +3,7 @@ const { ButtonStyle, DiscordJS } = require("discord.js");
 
 async function raskVienodus(interaction, emojiList, playingUsers) {
 
-    const maxMoves = 28;
+    const maxMoves = 26;
 
     let gameOutcome;
 
@@ -118,18 +118,9 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                 }
                 currentSelected = pairs[buttonClickedIndex].id;
 
-                if (moves === 0 && pairsFound.length !== 8) {
+                if (pairsFound.length === 8) {
                     const embed = new EmbedBuilder()
-                        .setColor(0x0099FF)
-                        .setTitle('Loterėja')
-                        .setDescription('Rask visus vienodus!')
-                        .addFields({ name: 'Liko ėjimų', value: `${moves}`, inline: true })
-                        .addFields({ name: 'Rezultatas', value: 'Pralaimėjai', inline: false });
-                    await button.update({ embeds: [embed], components: [row, row2, row3, row4] });
-                    gameOutcome = false;
-                } else if (pairsFound.length === 8) {
-                    const embed = new EmbedBuilder()
-                        .setColor(0x0099FF)
+                        .setColor(0x00FF99)
                         .setTitle('Loterėja')
                         .setDescription('Rask visus vienodus!')
                         .addFields({ name: 'Liko ėjimų', value: `${moves}`, inline: true })
@@ -137,6 +128,16 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                         .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debis.gay', inline: true });
                     await button.update({ embeds: [embed], components: [row, row2, row3, row4] });
                     gameOutcome = true;
+                }
+                else if (moves === 0) {
+                    const embed = new EmbedBuilder()
+                        .setColor(0xFF0000)
+                        .setTitle('Loterėja')
+                        .setDescription('Rask visus vienodus!')
+                        .addFields({ name: 'Liko ėjimų', value: `${moves}`, inline: true })
+                        .addFields({ name: 'Rezultatas', value: 'Pralaimėjai', inline: false });
+                    await button.update({ embeds: [embed], components: [row, row2, row3, row4] });
+                    gameOutcome = false;
                 } else {
                     const embed = new EmbedBuilder()
                         .setColor(0x0099FF)
