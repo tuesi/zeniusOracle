@@ -47,29 +47,29 @@ module.exports = {
         .setName("zeniauslotereja")
         .setDescription("Zeniaus lotereja"),
     async execute(interaction) {
-        // const emoji1 = emoji.getEmoji(interaction, "noo");
-        // const emoji2 = emoji.getEmoji(interaction, "pirst");
-        // const emoji3 = emoji.getEmoji(interaction, "aurimts");
-        // const emoji4 = emoji.getEmoji(interaction, "trusabaka");
-        // const emoji5 = emoji.getEmoji(interaction, "fifidleiplaukas");
-        // const emoji6 = emoji.getEmoji(interaction, "ojtu");
-        // const emoji7 = emoji.getEmoji(interaction, "aurim2");
-        // const emoji8 = emoji.getEmoji(interaction, "chicago");
-        // const emoji9 = emoji.getEmoji(interaction, "ginispassport");
-        // const emoji10 = emoji.getEmoji(interaction, "ct2");
+        const emoji1 = emoji.getEmoji(interaction, "noo");
+        const emoji2 = emoji.getEmoji(interaction, "pirst");
+        const emoji3 = emoji.getEmoji(interaction, "aurimts");
+        const emoji4 = emoji.getEmoji(interaction, "trusabaka");
+        const emoji5 = emoji.getEmoji(interaction, "fifidleiplaukas");
+        const emoji6 = emoji.getEmoji(interaction, "ojtu");
+        const emoji7 = emoji.getEmoji(interaction, "aurim2");
+        const emoji8 = emoji.getEmoji(interaction, "chicago");
+        const emoji9 = emoji.getEmoji(interaction, "ginispassport");
+        const emoji10 = emoji.getEmoji(interaction, "ct2");
 
 
         // ‎
 
-        const emoji1 = emoji.getEmoji(interaction, "test1");
-        const emoji2 = emoji.getEmoji(interaction, "sausginis");
-        const emoji3 = emoji.getEmoji(interaction, "trusabanis");
-        const emoji4 = emoji.getEmoji(interaction, "obuo");
-        const emoji5 = emoji.getEmoji(interaction, "zinios");
-        const emoji6 = emoji.getEmoji(interaction, "zverioga");
-        const emoji7 = emoji.getEmoji(interaction, "black");
-        const emoji8 = emoji.getEmoji(interaction, "fokume");
-        const emoji9 = emoji.getEmoji(interaction, "song");
+        // const emoji1 = emoji.getEmoji(interaction, "test1");
+        // const emoji2 = emoji.getEmoji(interaction, "sausginis");
+        // const emoji3 = emoji.getEmoji(interaction, "trusabanis");
+        // const emoji4 = emoji.getEmoji(interaction, "obuo");
+        // const emoji5 = emoji.getEmoji(interaction, "zinios");
+        // const emoji6 = emoji.getEmoji(interaction, "zverioga");
+        // const emoji7 = emoji.getEmoji(interaction, "black");
+        // const emoji8 = emoji.getEmoji(interaction, "fokume");
+        // const emoji9 = emoji.getEmoji(interaction, "song");
 
         if (interaction.channel.id === '1069524416729456680') {
             let hasNoPendingMessages = false;
