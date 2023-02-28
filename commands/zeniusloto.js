@@ -75,7 +75,7 @@ module.exports = {
             let hasNoPendingMessages = false;
             const wasGiven = await getLivesSet(interaction.user.id);
             //const wasGiven = false;
-            if (playingUsers.indexOf(interaction.user.id) == -1) {
+            if (playingUsers.indexOf(interaction.user.id) === -1) {
                 playingUsers.push(interaction.user.id);
                 hasNoPendingMessages = true;
             } else {
