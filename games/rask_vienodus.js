@@ -3,7 +3,7 @@ const { ButtonStyle, DiscordJS } = require("discord.js");
 
 async function raskVienodus(interaction, emojiList, playingUsers) {
 
-    const maxMoves = 26;
+    const maxMoves = 24;
 
     let gameOutcome;
 
