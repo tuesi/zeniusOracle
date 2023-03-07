@@ -137,7 +137,7 @@ async function pamarskomuPriesZeniu(interaction, emojiList, playingUsers) {
                         .addFields({ name: 'ㅤVS', value: '‎', inline: true })
                         .addFields({ name: 'ㅤㅤZenius', value: `ㅤㅤ${zeniusWin}`, inline: true })
                         .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false })
-                        .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debis.gay', inline: true });
+                        .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debils.gay', inline: true });
                     await button.update({ embeds: [embed], components: [row] });
                 } else {
                     const embed = new EmbedBuilder()

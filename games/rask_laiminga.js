@@ -44,7 +44,7 @@ async function raskLaiminga(interaction, emojiList, playingUsers) {
                 buttons[buttonClickedIndex].setStyle(ButtonStyle.Success);
                 embed.setColor(0x00FF99);
                 embed.addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: true });
-                embed.addFields({ name: 'Gavai 1 gyvybę', value: 'www.debis.gay', inline: true });
+                embed.addFields({ name: 'Gavai 1 gyvybę', value: 'www.debils.gay', inline: true });
                 await button.update({ embeds: [embed], components: [row] });
                 gameOutcome = true;
             } else {

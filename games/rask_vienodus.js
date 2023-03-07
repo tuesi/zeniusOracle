@@ -125,7 +125,7 @@ async function raskVienodus(interaction, emojiList, playingUsers) {
                         .setDescription('Rask visus vienodus!')
                         .addFields({ name: 'Liko ėjimų', value: `${moves}`, inline: true })
                         .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false })
-                        .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debis.gay', inline: true });
+                        .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debils.gay', inline: true });
                     await button.update({ embeds: [embed], components: [row, row2, row3, row4] });
                     gameOutcome = true;
                 }
