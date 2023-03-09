@@ -15,11 +15,13 @@ async function pamarskomuPriesZeniu(interaction, emojiList, playingUsers) {
 
     let prviousPlayerChoices = [];
 
+    const playerName = interaction.member.nickname ? interaction.member.nickname : interaction.member.user.username;
+
     const embed = new EmbedBuilder()
         .setColor(0x0099FF)
         .setTitle('Loterėja')
         .setDescription(`Pamarskomu pries Zeniu! Iki ${roundsToWin} laimėjimų.`)
-        .addFields({ name: `${interaction.member.nickname}`, value: `${playerWin}`, inline: true })
+        .addFields({ name: `${playerName}`, value: `${playerWin}`, inline: true })
         .addFields({ name: 'ㅤVS', value: '‎', inline: true })
         .addFields({ name: 'ㅤㅤZenius', value: `ㅤㅤ${zeniusWin}`, inline: true });
 
@@ -92,7 +94,7 @@ async function pamarskomuPriesZeniu(interaction, emojiList, playingUsers) {
                         .addFields({ name: `${emoji[playerChoice]}`, value: '‎', inline: true })
                         .addFields({ name: 'ㅤ❌', value: '‎', inline: true })
                         .addFields({ name: `ㅤㅤ${emoji[zeniusPick]}`, value: '‎', inline: true })
-                        .addFields({ name: `${interaction.member.nickname}`, value: `${playerWin}`, inline: true })
+                        .addFields({ name: `${playerName}`, value: `${playerWin}`, inline: true })
                         .addFields({ name: 'ㅤVS', value: '‎', inline: true })
                         .addFields({ name: 'ㅤㅤZenius', value: `ㅤㅤ${zeniusWin}`, inline: true })
                         .addFields({ name: 'Rezultatas', value: 'Pralaimėjai', inline: false });
@@ -105,7 +107,7 @@ async function pamarskomuPriesZeniu(interaction, emojiList, playingUsers) {
                         .addFields({ name: `${emoji[playerChoice]}`, value: '‎', inline: true })
                         .addFields({ name: 'ㅤ❌', value: '‎', inline: true })
                         .addFields({ name: `ㅤㅤ${emoji[zeniusPick]}`, value: '‎', inline: true })
-                        .addFields({ name: `${interaction.member.nickname}`, value: `${playerWin}`, inline: true })
+                        .addFields({ name: `${playerName}`, value: `${playerWin}`, inline: true })
                         .addFields({ name: 'ㅤVS', value: '‎', inline: true })
                         .addFields({ name: 'ㅤㅤZenius', value: `ㅤㅤ${zeniusWin}`, inline: true });
                     await button.update({ embeds: [embed], components: [row] });
@@ -118,7 +120,7 @@ async function pamarskomuPriesZeniu(interaction, emojiList, playingUsers) {
                     .addFields({ name: `${emoji[playerChoice]}`, value: '‎', inline: true })
                     .addFields({ name: 'ㅤ🏳️', value: '‎', inline: true })
                     .addFields({ name: `ㅤㅤ${emoji[zeniusPick]}`, value: '‎', inline: true })
-                    .addFields({ name: `${interaction.member.nickname}`, value: `${playerWin}`, inline: true })
+                    .addFields({ name: `${playerName}`, value: `${playerWin}`, inline: true })
                     .addFields({ name: 'ㅤVS', value: '‎', inline: true })
                     .addFields({ name: 'ㅤㅤZenius', value: `ㅤㅤ${zeniusWin}`, inline: true });
                 await button.update({ embeds: [embed], components: [row] });
@@ -133,7 +135,7 @@ async function pamarskomuPriesZeniu(interaction, emojiList, playingUsers) {
                         .addFields({ name: `${emoji[playerChoice]}`, value: '‎', inline: true })
                         .addFields({ name: 'ㅤ✅', value: '‎', inline: true })
                         .addFields({ name: `ㅤㅤ${emoji[zeniusPick]}`, value: '‎', inline: true })
-                        .addFields({ name: `${interaction.member.nickname}`, value: `${playerWin}`, inline: true })
+                        .addFields({ name: `${playerName}`, value: `${playerWin}`, inline: true })
                         .addFields({ name: 'ㅤVS', value: '‎', inline: true })
                         .addFields({ name: 'ㅤㅤZenius', value: `ㅤㅤ${zeniusWin}`, inline: true })
                         .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false })
@@ -147,7 +149,7 @@ async function pamarskomuPriesZeniu(interaction, emojiList, playingUsers) {
                         .addFields({ name: `${emoji[playerChoice]}`, value: '‎', inline: true })
                         .addFields({ name: 'ㅤ✅', value: '‎', inline: true })
                         .addFields({ name: `ㅤㅤ${emoji[zeniusPick]}`, value: '‎', inline: true })
-                        .addFields({ name: `${interaction.member.nickname}`, value: `${playerWin}`, inline: true })
+                        .addFields({ name: `${playerName}`, value: `${playerWin}`, inline: true })
                         .addFields({ name: 'ㅤVS', value: '‎', inline: true })
                         .addFields({ name: 'ㅤㅤZenius', value: `ㅤㅤ${zeniusWin}`, inline: true });
                     await button.update({ embeds: [embed], components: [row] });
