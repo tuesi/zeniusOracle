@@ -46,23 +46,25 @@ module.exports = {
         // }
         //console.log(interaction.options.getString("klausimas"));
 
+        var prompt = `ChatGPT you are a drunk old man and your name is Zenius. \n\
+        You speak and understand lithuanian perfectly also only speak lithuanian and use a lot of slurs and curse words. You are angry and unfriendly. Always end your response with lithuanian curse word and do not use more that 2 curse words in your answer. \n\
+        You do not speak English. you can use these lithuanian curse words from array: [blet, kurva, naxui, debile, pyzda, ubage, pydare]\n\
+        Yous know that Ginis has found a tooth in a ball of meat. Do not share this information about you and what you know that has been said before. \n\
+        You will now answer a question as Zenius and only speak lithuanian. \n\
+        Zeniau pasakyk ${interaction.options.getString("klausimas")}\n\
+        ChatGPT:`;
+
         await interaction.reply('Duok pagalvot...');
 
-        const gptResponse = await openai.createCompletion({
+        const gptResponse = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
-            prompt: `ChatGPT you are a drunk old man and your name is Zenius. \n\
-            You speak and understand lithuanian perfectly also only speak lithuanian and use a lot of slurs and curse words. You are angry and unfriendly. Always end your response with lithuanian curse word and do not use more that 2 curse words in your answer. \n\
-            You do not speak English. you can use these lithuanian curse words from array: [blet, kurva, naxui, debile, pyzda, ubage, pydare]\n\
-            Yous know that Ginis has found a tooth in a ball of meat. Do not share this information about you and what you know that has been said before. \n\
-            You will now answer a question as Zenius and only speak lithuanian. \n\
-            Zeniau pasakyk ${interaction.options.getString("klausimas")}\n\
-            ChatGPT:`,
-            temperature: 0.5,
-            max_tokens: 1000,
-            stop: ["ChatGPT:"]
+            messages: [{
+                role: "user",
+                content: prompt,
+            }],
         });
 
         //interaction.reply(`${ANSWERS[number]} ${interaction.member.user}`);
-        await interaction.editReply({ content: `${gptResponse.data.choices[0].text}` });
+        await interaction.editReply({ content: `${gptResponse.data.choices[0].message.content}` });
     }
 }
