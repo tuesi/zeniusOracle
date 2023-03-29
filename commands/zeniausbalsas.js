@@ -45,6 +45,10 @@ module.exports = {
         let voiceConnection;
         let audioPlayer = new AudioPlayer();
 
+        if (!interaction.member.voice.channel) {
+            return await interaction.reply({ content: 'Reikia buti voice chate', ephemeral: true })
+        }
+
         await interaction.reply({ content: '‎', ephemeral: true });
 
 
