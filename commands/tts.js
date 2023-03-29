@@ -40,7 +40,7 @@ module.exports = {
             language = interaction.options.getString("kalba");
         }
         const audioStream = await tts.getVoiceStream(text, { lang: language });
-        interaction.reply({ content: `${text}`, files: [{ attachment: audioStream, name: "tts.mp3" }] });
+        interaction.reply({ content: ``, files: [{ attachment: audioStream, name: "zeniaus balsas.mp3" }] });
         //await interaction.reply({ content: `${text}`, tts: true });
     }
 }
