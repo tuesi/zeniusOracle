@@ -4,6 +4,9 @@ const tts = require("discord-tts");
 const { Client, Intents } = require("discord.js");
 const { AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel, AudioPlayerStatus } = require("@discordjs/voice");
 
+let audioPlayer;
+let voiceConnection;
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("zeniausbalsas")
@@ -36,14 +39,13 @@ module.exports = {
                     { name: 'Rumunu', value: 'ro' },
                 )),
     async execute(interaction) {
-        const text = interaction.options.getString("tekstas");
+        const text = truncate(interaction.options.getString("tekstas"), 100);
         var language = "pl";
         if (interaction.options.getString("kalba")) {
             language = interaction.options.getString("kalba");
         }
 
-        let voiceConnection;
-        let audioPlayer = new AudioPlayer();
+        audioPlayer = new AudioPlayer();
 
         if (!interaction.member.voice.channel) {
             return await interaction.reply({ content: 'Reikia buti voice chate', ephemeral: true })
@@ -51,26 +53,35 @@ module.exports = {
 
         await interaction.reply({ content: '‎', ephemeral: true });
 
+        try {
+            const audioStream = await tts.getVoiceStream(text, { lang: language });
+            const audioResource = createAudioResource(audioStream, { inputType: StreamType.Arbitrary, inlineVolume: true });
+            if (!voiceConnection || voiceConnection?.status === VoiceConnectionStatus.Disconnected) {
+                voiceConnection = joinVoiceChannel({
+                    channelId: interaction.member.voice.channelId,
+                    guildId: interaction.guildId,
+                    adapterCreator: interaction.guild.voiceAdapterCreator,
+                });
+                voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 5_000);
+            }
 
-        const audioStream = await tts.getVoiceStream(text, { lang: language });
-        const audioResource = createAudioResource(audioStream, { inputType: StreamType.Arbitrary, inlineVolume: true });
-        if (!voiceConnection || voiceConnection?.status === VoiceConnectionStatus.Disconnected) {
-            voiceConnection = joinVoiceChannel({
-                channelId: interaction.member.voice.channelId,
-                guildId: interaction.guildId,
-                adapterCreator: interaction.guild.voiceAdapterCreator,
-            });
-            voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 5_000);
-        }
-
-        if (voiceConnection.status === VoiceConnectionStatus.Connected) {
-            voiceConnection.subscribe(audioPlayer);
-            audioPlayer.play(audioResource);
-            audioPlayer.on("stateChange", (oldState, newState) => {
-                if (newState.status === AudioPlayerStatus.Idle) {
-                    voiceConnection.disconnect();
-                }
-            });
+            if (voiceConnection.status === VoiceConnectionStatus.Connected) {
+                voiceConnection.subscribe(audioPlayer);
+                audioPlayer.play(audioResource);
+                audioPlayer.on("stateChange", (oldState, newState) => {
+                    if (newState.status === AudioPlayerStatus.Idle) {
+                        voiceConnection.disconnect();
+                    }
+                });
+            }
+        } catch {
+            console.log("Something whent wrong");
         }
     }
+}
+
+function truncate(str, length) {
+    if (str.length > length) {
+        return str.slice(0, length);
+    } else return str;
 }
