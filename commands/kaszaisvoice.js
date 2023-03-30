@@ -7,7 +7,6 @@ const { Readable } = require('stream');
 const { Silence } = require('prism-media')
 
 let audioPlayer;
-let voiceConnection;
 const pauseSymbol = ";";
 const pauseDuration = 300000; // 30 seconds
 
@@ -184,8 +183,8 @@ module.exports = {
 
         await interaction.reply(`ZENIUS SAKO, KAD BUVO IVESTA ${activePlayers}`);
 
+        let voiceConnection;
         audioPlayer = new AudioPlayer();
-
         try {
             const textParts = text.split(pauseSymbol);
             const audioResources = [];
@@ -212,7 +211,6 @@ module.exports = {
                 });
                 voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 5_000);
             }
-
             if (voiceConnection.status === VoiceConnectionStatus.Connected) {
                 voiceConnection.subscribe(audioPlayer);
 

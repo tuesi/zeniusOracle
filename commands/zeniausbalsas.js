@@ -5,7 +5,6 @@ const { Client, Intents } = require("discord.js");
 const { AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel, AudioPlayerStatus } = require("@discordjs/voice");
 
 let audioPlayer;
-let voiceConnection;
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -46,6 +45,7 @@ module.exports = {
         }
 
         audioPlayer = new AudioPlayer();
+        let voiceConnection;
 
         if (!interaction.member.voice.channel) {
             return await interaction.reply({ content: 'Reikia buti voice chate', ephemeral: true })
