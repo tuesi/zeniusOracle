@@ -5,8 +5,6 @@ const { Client, Intents } = require("discord.js");
 const { AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel, AudioPlayerStatus } = require("@discordjs/voice");
 const zeniusAudioEnum = require("../utils/zeniusAudioEnum.js");
 
-let audioPlayer;
-
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("zeniausbalsas")
@@ -46,7 +44,7 @@ module.exports = {
             language = interaction.options.getString("kalba");
         }
 
-        audioPlayer = new AudioPlayer();
+        const audioPlayer = new AudioPlayer();
         let voiceConnection;
 
         if (!interaction.member.voice.channel) {
@@ -68,7 +66,7 @@ module.exports = {
                     audioResource = createAudioResource('./assets/as_tave_sveikinu.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.atsiradau:
-                    audioResource = createAudioResource('./assets/atsiradaus.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/atsiradau.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.auksinis_pydaras:
                     audioResource = createAudioResource('./assets/AUKSINIS_PYD.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
@@ -155,6 +153,7 @@ module.exports = {
             }
         } catch (e) {
             voiceConnection.disconnect();
+            audioPlayer.stop();
             console.log(e);
             console.log("Something whent wrong");
         }

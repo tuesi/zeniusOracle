@@ -3,7 +3,7 @@ const zeniusAudioEnum = {
     as_kasiaka_rukau: "as kasiaka rukau",
     as_tave_sveikinu: "as tave sveikinu",
     atsiradau: "atsiradau",
-    auksinis_pydaras: "auksinis pydatas",
+    auksinis_pydaras: "auksinis pydaras",
     balas_desimt: "balas desimt",
     drakula: "drakula",
     how_du_du: "how du du",
