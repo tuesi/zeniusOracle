@@ -40,30 +40,6 @@ module.exports = {
                 )),
     async execute(interaction) {
 
-        const tu_esi_sudas = createAudioResource('./assets/tu_esi_sudas.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const as_kasiaka_rukau = createAudioResource('./assets/AS_KASIAKA_RUKAU.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const as_tave_sveikinu = createAudioResource('./assets/as_tave_sveikinu.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const atsiradau = createAudioResource('./assets/atsiradaus.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const auksinis_pydaras = createAudioResource('./assets/AUKSINIS_PYD.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const balas_desimt = createAudioResource('./assets/BALAS_DESIMT.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const drakula = createAudioResource('./assets/DRAKULA.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const how_du_du = createAudioResource('./assets/How_di_du_du.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const kebabas = createAudioResource('./assets/kebabas.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const labai_malonu = createAudioResource('./assets/labai_malonu.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const manaroska = createAudioResource('./assets/manaroska.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const medis = createAudioResource('./assets/medis.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const myliu_tave = createAudioResource('./assets/myliu_tave.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const obuoly = createAudioResource('./assets/obuoly.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const plikai_sneka = createAudioResource('./assets/plikai_sneka.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const pydariau = createAudioResource('./assets/pydariau.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const sikni = createAudioResource('./assets/sikni.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const suesiu_tave = createAudioResource('./assets/suesiu_tave.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const tau_i_strele = createAudioResource('./assets/tau_i_strele.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const tava_pimpala = createAudioResource('./assets/pava_pimpala.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const tu_kaip_kriaukle = createAudioResource('./assets/TU_KAIP_KRIAUKLE.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const viena_pratyba = createAudioResource('./assets/viena_pratyba.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-        const zombis = createAudioResource('./assets/zombis.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
-
         const text = truncate(interaction.options.getString("tekstas"), 100);
         var language = "pl";
         if (interaction.options.getString("kalba")) {
@@ -83,73 +59,73 @@ module.exports = {
             let audioResource;
             switch (text) {
                 case zeniusAudioEnum.tu_esi_sudas:
-                    audioResource = tu_esi_sudas;
+                    audioResource = createAudioResource('./assets/tu_esi_sudas.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.as_kasiaka_rukau:
-                    audioResource = as_kasiaka_rukau;
+                    audioResource = createAudioResource('./assets/AS_KASIAKA_RUKAU.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.as_tave_sveikinu:
-                    audioResource = as_tave_sveikinu;
+                    audioResource = createAudioResource('./assets/as_tave_sveikinu.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.atsiradau:
-                    audioResource = atsiradau;
+                    audioResource = createAudioResource('./assets/atsiradaus.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.auksinis_pydaras:
-                    audioResource = auksinis_pydaras;
+                    audioResource = createAudioResource('./assets/AUKSINIS_PYD.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.balas_desimt:
-                    audioResource = balas_desimt;
+                    audioResource = createAudioResource('./assets/BALAS_DESIMT.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.drakula:
-                    audioResource = drakula;
+                    audioResource = createAudioResource('./assets/DRAKULA.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.how_du_du:
-                    audioResource = how_du_du;
+                    audioResource = createAudioResource('./assets/How_di_du_du.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.kebabas:
-                    audioResource = kebabas;
+                    audioResource = createAudioResource('./assets/kebabas.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.labai_malonu:
-                    audioResource = labai_malonu;
+                    audioResource = createAudioResource('./assets/labai_malonu.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.manaroska:
-                    audioResource = manaroska;
+                    audioResource = createAudioResource('./assets/manaroska.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.medis:
-                    audioResource = medis;
+                    audioResource = createAudioResource('./assets/medis.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.myliu_tave:
-                    audioResource = myliu_tave;
+                    audioResource = createAudioResource('./assets/myliu_tave.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.obuoly:
-                    audioResource = obuoly;
+                    audioResource = createAudioResource('./assets/obuoly.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.plikai_sneka:
-                    audioResource = plikai_sneka;
+                    audioResource = createAudioResource('./assets/plikai_sneka.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.pydariau:
-                    audioResource = pydariau;
+                    audioResource = createAudioResource('./assets/pydariau.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.sikni:
-                    audioResource = sikni;
+                    audioResource = createAudioResource('./assets/sikni.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.suesiu_tave:
-                    audioResource = suesiu_tave;
+                    audioResource = createAudioResource('./assets/suesiu_tave.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.tau_i_strele:
-                    audioResource = tau_i_strele;
+                    audioResource = createAudioResource('./assets/tau_i_strele.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.tava_pimpala:
-                    audioResource = tava_pimpala;
+                    audioResource = createAudioResource('./assets/pava_pimpala.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.tu_kaip_kriaukle:
-                    audioResource = tu_kaip_kriaukle;
+                    audioResource = createAudioResource('./assets/TU_KAIP_KRIAUKLE.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.viena_pratyba:
-                    audioResource = viena_pratyba;
+                    audioResource = createAudioResource('./assets/viena_pratyba.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.zombis:
-                    audioResource = zombis;
+                    audioResource = createAudioResource('./assets/zombis.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 default:
                     const audioStream = await tts.getVoiceStream(text, { lang: language });
