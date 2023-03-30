@@ -12,7 +12,7 @@ const zeniusAudioEnum = {
     manaroska: "manaroska",
     medis: "medis",
     myliu_tave: "myliu tave",
-    obuoly: "obuolys",
+    obuoly: "obuoly",
     plikai_sneka: "plikai sneka",
     pydariau: "pydariau",
     sikni: "sikni",

@@ -154,6 +154,7 @@ module.exports = {
                 });
             }
         } catch (e) {
+            voiceConnection.disconnect();
             console.log(e);
             console.log("Something whent wrong");
         }
