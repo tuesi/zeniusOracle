@@ -9,18 +9,12 @@ const { Silence } = require('prism-media')
 let audioPlayer;
 let voiceConnection;
 const pauseSymbol = ";";
-const pauseDuration = 400000; // 10 seconds
+const pauseDuration = 300000; // 30 seconds
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("kaszaisbalsu")
         .setDescription("Zeniaus pasakys kas zais balsu")
-        .addStringOption(option => {
-            return option
-                .setName("tekstas")
-                .setDescription("Tekstas")
-                .setRequired(true)
-        })
         .addUserOption(option => {
             return option
                 .setName("zaidejas1")
