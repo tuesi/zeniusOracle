@@ -21,7 +21,8 @@ const zeniusAudioEnum = {
     tava_pimpala: "tavo pimpala",
     tu_kaip_kriaukle: "tu kaip kriaukle",
     viena_pratyba: "viena pratyba",
-    zombis: "zombis"
+    zombis: "zombis",
+    hau_hau: "hau hau"
 }
 
 

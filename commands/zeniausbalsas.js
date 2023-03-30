@@ -127,6 +127,9 @@ module.exports = {
                 case zeniusAudioEnum.zombis:
                     audioResource = createAudioResource('./assets/zombis.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
+                case zeniusAudioEnum.hau_hau:
+                    audioResource = createAudioResource('./assets/HAU_HAU.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    break;
                 default:
                     const audioStream = await tts.getVoiceStream(text, { lang: language });
                     audioResource = createAudioResource(audioStream, { inputType: StreamType.Arbitrary, inlineVolume: true });
