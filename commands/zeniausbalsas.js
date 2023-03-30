@@ -116,7 +116,7 @@ module.exports = {
                     audioResource = createAudioResource('./assets/tau_i_strele.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.tava_pimpala:
-                    audioResource = createAudioResource('./assets/pava_pimpala.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/tava_pimpala.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
                     break;
                 case zeniusAudioEnum.tu_kaip_kriaukle:
                     audioResource = createAudioResource('./assets/TU_KAIP_KRIAUKLE.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
