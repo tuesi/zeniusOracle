@@ -175,7 +175,7 @@ module.exports = {
             }
         }
 
-        const text = "Zenius sako kad Siandien syy žaidimukaa smaguu žais" + playerNames.join(";");
+        const text = "Zenius sako kad Siandien syy žaidimukaa smaguu žais;" + playerNames.join(";");
         var language = "pl";
 
         if (!interaction.member.voice.channel) {
