@@ -36,11 +36,17 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
         const buttons = [];
         let emojiToUse = [...emojiList];
 
+        // const embed = new EmbedBuilder()
+        //     .setColor(0x0099FF)
+        //     .setTitle('Loterėja')
+        //     .setDescription('Rask subineiką!')
+        //     .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true });
+
         const embed = new EmbedBuilder()
             .setColor(0x0099FF)
-            .setTitle('Loterėja')
-            .setDescription('Rask subineiką!')
-            .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true });
+            .setTitle('Лотерея')
+            .setDescription('находить жопа!')
+            .addFields({ name: 'догадки остались', value: `${movesLeft}`, inline: true });
 
         for (var i = 0; i < 9; i++) {
             let button = new ButtonBuilder()
@@ -81,11 +87,17 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
                     }
                     movesLeft -= 1;
                     if (movesLeft > 0 && buttonClickedIndex !== luckyButtonIndex) {
+                        // const embed = new EmbedBuilder()
+                        //     .setColor(0x0099FF)
+                        //     .setTitle('Loterėja')
+                        //     .setDescription('Rask subineiką!')
+                        //     .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true });
+                        // await button.update({ embeds: [embed], components: [row, row2, row3] });
                         const embed = new EmbedBuilder()
                             .setColor(0x0099FF)
-                            .setTitle('Loterėja')
-                            .setDescription('Rask subineiką!')
-                            .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true });
+                            .setTitle('Лотерея')
+                            .setDescription('находить жопа!')
+                            .addFields({ name: 'догадки остались', value: `${movesLeft}`, inline: true });
                         await button.update({ embeds: [embed], components: [row, row2, row3] });
                     } else {
                         for (var i = 0; i < 9; i++) {
@@ -99,23 +111,38 @@ async function raskSubineika(interaction, emojiList, playingUsers) {
                 }
 
                 if (buttonClickedIndex === luckyButtonIndex) {
+                    // const embed = new EmbedBuilder()
+                    //     .setColor(0x00FF99)
+                    //     .setTitle('Loterėja')
+                    //     .setDescription('Rask subineiką!')
+                    //     .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true })
+                    //     .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false })
+                    //     .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debils.gay', inline: true });
+                    // await button.update({ embeds: [embed], components: [row, row2, row3] });
                     const embed = new EmbedBuilder()
                         .setColor(0x00FF99)
-                        .setTitle('Loterėja')
-                        .setDescription('Rask subineiką!')
-                        .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true })
-                        .addFields({ name: 'Rezultatas', value: 'Laimėjai', inline: false })
-                        .addFields({ name: 'Gavai 1 gyvybę', value: 'www.debils.gay', inline: true });
+                        .setTitle('Лотерея')
+                        .setDescription('находить жопа!')
+                        .addFields({ name: 'догадки остались', value: `${movesLeft}`, inline: true })
+                        .addFields({ name: 'результат', value: 'ты победил', inline: false })
+                        .addFields({ name: 'Вы получаете 1 жизнь', value: 'www.дебил.ru', inline: true });
                     await button.update({ embeds: [embed], components: [row, row2, row3] });
                     gameOutcome = true;
 
                 } else if (movesLeft === 0) {
+                    // const embed = new EmbedBuilder()
+                    //     .setColor(0xFF0000)
+                    //     .setTitle('Loterėja')
+                    //     .setDescription('Rask subineiką!')
+                    //     .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true })
+                    //     .addFields({ name: 'Rezultatas', value: 'Pralaimėjai', inline: false });
+                    // await button.update({ embeds: [embed], components: [row, row2, row3] });
                     const embed = new EmbedBuilder()
                         .setColor(0xFF0000)
-                        .setTitle('Loterėja')
-                        .setDescription('Rask subineiką!')
-                        .addFields({ name: 'Liko spėjimų', value: `${movesLeft}`, inline: true })
-                        .addFields({ name: 'Rezultatas', value: 'Pralaimėjai', inline: false });
+                        .setTitle('Лотерея')
+                        .setDescription('находить жопа!')
+                        .addFields({ name: 'догадки остались', value: `${movesLeft}`, inline: true })
+                        .addFields({ name: 'результат', value: 'ты проиграл', inline: false });
                     await button.update({ embeds: [embed], components: [row, row2, row3] });
                     gameOutcome = false;
                 }
