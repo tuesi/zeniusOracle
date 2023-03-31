@@ -47,13 +47,14 @@ module.exports = {
         const audioPlayer = new AudioPlayer();
         let voiceConnection;
 
-        if (!interaction.member.voice.channel) {
-            return await interaction.reply({ content: 'Reikia buti voice chate', ephemeral: true })
-        }
-
-        await interaction.reply({ content: '‎', ephemeral: true });
-
         try {
+
+            if (!interaction.member.voice.channel) {
+                return await interaction.reply({ content: 'Reikia buti voice chate', ephemeral: true })
+            }
+
+            await interaction.reply({ content: '‎', ephemeral: true });
+
             let audioResource;
             switch (text) {
                 case zeniusAudioEnum.tu_esi_sudas:
@@ -140,9 +141,9 @@ module.exports = {
                     guildId: interaction.guildId,
                     adapterCreator: interaction.guild.voiceAdapterCreator,
                 });
-                voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 5_000);
+                voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 10_000);
             }
-            if (voiceConnection.status === VoiceConnectionStatus.Ready) {
+            if (voiceConnection.status === VoiceConnectionStatus.Connected) {
                 voiceConnection.subscribe(audioPlayer);
                 audioPlayer.play(audioResource);
                 audioPlayer.on("stateChange", (oldState, newState) => {
