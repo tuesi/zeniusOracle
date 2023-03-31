@@ -129,6 +129,15 @@ module.exports = {
                 case zeniusAudioEnum.hau_hau:
                     audioResource = createAudioResource('./assets/HAU_HAU.mp3');
                     break;
+                case zeniusAudioEnum.gandashoks:
+                    audioResource = createAudioResource('./assets/gandashokas.mp3');
+                    break;
+                case zeniusAudioEnum.toki_ziauru:
+                    audioResource = createAudioResource('./assets/toki_ziauru.mp3');
+                    break;
+                case zeniusAudioEnum.hau_hau:
+                    audioResource = createAudioResource('./assets/tu_dabar_esi_berniukas.mp3');
+                    break;
                 default:
                     const audioStream = await tts.getVoiceStream(text, { lang: language });
                     audioResource = createAudioResource(audioStream, { inputType: StreamType.Arbitrary, inlineVolume: true });
