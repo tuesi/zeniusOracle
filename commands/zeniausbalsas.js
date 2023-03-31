@@ -57,76 +57,76 @@ module.exports = {
             let audioResource;
             switch (text) {
                 case zeniusAudioEnum.tu_esi_sudas:
-                    audioResource = createAudioResource('./assets/tu_esi_sudas.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/tu_esi_sudas.mp3');
                     break;
                 case zeniusAudioEnum.as_kasiaka_rukau:
-                    audioResource = createAudioResource('./assets/AS_KASIAKA_RUKAU.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/AS_KASIAKA_RUKAU.mp3');
                     break;
                 case zeniusAudioEnum.as_tave_sveikinu:
-                    audioResource = createAudioResource('./assets/as_tave_sveikinu.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/as_tave_sveikinu.mp3');
                     break;
                 case zeniusAudioEnum.atsiradau:
-                    audioResource = createAudioResource('./assets/atsiradau.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/atsiradau.mp3');
                     break;
                 case zeniusAudioEnum.auksinis_pydaras:
-                    audioResource = createAudioResource('./assets/AUKSINIS_PYD.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/AUKSINIS_PYD.mp3');
                     break;
                 case zeniusAudioEnum.balas_desimt:
-                    audioResource = createAudioResource('./assets/BALAS_DESIMT.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/BALAS_DESIMT.mp3');
                     break;
                 case zeniusAudioEnum.drakula:
-                    audioResource = createAudioResource('./assets/DRAKULA.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/DRAKULA.mp3');
                     break;
                 case zeniusAudioEnum.how_du_du:
-                    audioResource = createAudioResource('./assets/How_di_du_du.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/How_di_du_du.mp3');
                     break;
                 case zeniusAudioEnum.kebabas:
-                    audioResource = createAudioResource('./assets/kebabas.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/kebabas.mp3');
                     break;
                 case zeniusAudioEnum.labai_malonu:
-                    audioResource = createAudioResource('./assets/labai_malonu.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/labai_malonu.mp3');
                     break;
                 case zeniusAudioEnum.manaroska:
-                    audioResource = createAudioResource('./assets/manaroska.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/manaroska.mp3');
                     break;
                 case zeniusAudioEnum.medis:
-                    audioResource = createAudioResource('./assets/medis.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/medis.mp3');
                     break;
                 case zeniusAudioEnum.myliu_tave:
-                    audioResource = createAudioResource('./assets/myliu_tave.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/myliu_tave.mp3');
                     break;
                 case zeniusAudioEnum.obuoly:
-                    audioResource = createAudioResource('./assets/obuoly.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/obuoly.mp3');
                     break;
                 case zeniusAudioEnum.plikai_sneka:
-                    audioResource = createAudioResource('./assets/plikai_sneka.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/plikai_sneka.mp3');
                     break;
                 case zeniusAudioEnum.pydariau:
-                    audioResource = createAudioResource('./assets/pydariau.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/pydariau.mp3');
                     break;
                 case zeniusAudioEnum.sikni:
-                    audioResource = createAudioResource('./assets/sikni.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/sikni.mp3');
                     break;
                 case zeniusAudioEnum.suesiu_tave:
-                    audioResource = createAudioResource('./assets/suesiu_tave.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/suesiu_tave.mp3');
                     break;
                 case zeniusAudioEnum.tau_i_strele:
-                    audioResource = createAudioResource('./assets/tau_i_strele.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/tau_i_strele.mp3');
                     break;
                 case zeniusAudioEnum.tava_pimpala:
-                    audioResource = createAudioResource('./assets/tava_pimpala.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/tava_pimpala.mp3');
                     break;
                 case zeniusAudioEnum.tu_kaip_kriaukle:
-                    audioResource = createAudioResource('./assets/TU_KAIP_KRIAUKLE.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/TU_KAIP_KRIAUKLE.mp3');
                     break;
                 case zeniusAudioEnum.viena_pratyba:
-                    audioResource = createAudioResource('./assets/viena_pratyba.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/viena_pratyba.mp3');
                     break;
                 case zeniusAudioEnum.zombis:
-                    audioResource = createAudioResource('./assets/zombis.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/zombis.mp3');
                     break;
                 case zeniusAudioEnum.hau_hau:
-                    audioResource = createAudioResource('./assets/HAU_HAU.mp3', { inputType: StreamType.Arbitrary, inlineVolume: true });
+                    audioResource = createAudioResource('./assets/HAU_HAU.mp3');
                     break;
                 default:
                     const audioStream = await tts.getVoiceStream(text, { lang: language });
@@ -142,7 +142,7 @@ module.exports = {
                 });
                 voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 5_000);
             }
-            if (voiceConnection.status === VoiceConnectionStatus.Connected) {
+            if (voiceConnection.status === VoiceConnectionStatus.Ready) {
                 voiceConnection.subscribe(audioPlayer);
                 audioPlayer.play(audioResource);
                 audioPlayer.on("stateChange", (oldState, newState) => {
