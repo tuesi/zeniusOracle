@@ -135,7 +135,7 @@ module.exports = {
                 case zeniusAudioEnum.toki_ziauru:
                     audioResource = createAudioResource('./assets/toki_ziauru.mp3');
                     break;
-                case zeniusAudioEnum.hau_hau:
+                case zeniusAudioEnum.tu_dabar_esi_berniukas:
                     audioResource = createAudioResource('./assets/tu_dabar_esi_berniukas.mp3');
                     break;
                 default:
