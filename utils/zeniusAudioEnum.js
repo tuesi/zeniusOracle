@@ -25,7 +25,14 @@ const zeniusAudioEnum = {
     hau_hau: "hau hau",
     gandashoks: "gandashoks",
     toki_ziauru: "toki ziauru",
-    tu_dabar_esi_berniukas: "tu dabar esi berniukas"
+    geda: "geda",
+    masinas_nebereikia: "masinos nebereikia",
+    nuo_sirdies: "nuo siedies",
+    pavalgai_atsisedes: "pavalgai atsisedes",
+    savarma: "savarma",
+    smegenys_is_proto_iseja: "smegenys is proto iseja",
+    sunkoka_atsakyti: "sunkoka atsakyti",
+    svarstukai: "svarstukai"
 }
 
 

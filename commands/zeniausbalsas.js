@@ -67,7 +67,7 @@ module.exports = {
                     audioResource = createAudioResource('./assets/as_tave_sveikinu.mp3');
                     break;
                 case zeniusAudioEnum.atsiradau:
-                    audioResource = createAudioResource('./assets/atsiradau.mp3');
+                    audioResource = createAudioResource('./assets/ATSIRADAU.mp3');
                     break;
                 case zeniusAudioEnum.auksinis_pydaras:
                     audioResource = createAudioResource('./assets/AUKSINIS_PYD.mp3');
@@ -137,6 +137,30 @@ module.exports = {
                     break;
                 case zeniusAudioEnum.tu_dabar_esi_berniukas:
                     audioResource = createAudioResource('./assets/tu_dabar_esi_berniukas.mp3');
+                    break;
+                case zeniusAudioEnum.geda:
+                    audioResource = createAudioResource('./assets/geda.mp3');
+                    break;
+                case zeniusAudioEnum.masinas_nebereikia:
+                    audioResource = createAudioResource('./assets/masinas_nebereikia.mp3');
+                    break;
+                case zeniusAudioEnum.nuo_sirdies:
+                    audioResource = createAudioResource('./assets/nuo_sirdies.mp3');
+                    break;
+                case zeniusAudioEnum.pavalgai_atsisedes:
+                    audioResource = createAudioResource('./assets/pavalgai_atsisedes.mp3');
+                    break;
+                case zeniusAudioEnum.savarma:
+                    audioResource = createAudioResource('./assets/savarma.mp3');
+                    break;
+                case zeniusAudioEnum.sunkoka_atsakyti:
+                    audioResource = createAudioResource('./assets/sunkoka_atsakyti.mp3');
+                    break;
+                case zeniusAudioEnum.smegenys_is_proto_iseja:
+                    audioResource = createAudioResource('./assets/smegenys_is_proto_iseja.mp3');
+                    break;
+                case zeniusAudioEnum.svarstukai:
+                    audioResource = createAudioResource('./assets/svarstukai.mp3');
                     break;
                 default:
                     const audioStream = await tts.getVoiceStream(text, { lang: language });
