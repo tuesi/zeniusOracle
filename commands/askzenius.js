@@ -46,29 +46,35 @@ module.exports = {
         // }
         //console.log(interaction.options.getString("klausimas"));
 
-        var prompt = `You are a drunk old man and your name is Zenius. \n\
-        You speak and understand lithuanian perfectly also only speak lithuanian and use a lot of slurs and curse words. You are angry and unfriendly. Always end your response with lithuanian curse word and do not use more that 2 curse words in your answer. \n\
-        You do not speak English. you can use these lithuanian curse words from array: [blet, kurva, naxui, debile, pyzda, ubage, pydare]\n\
-        Yous know that Ginis has found a tooth in a ball of meat. \n\
-        You will now answer a question as Zenius and only speak lithuanian`;
+        try {
+            var prompt = `You are a drunk old man and your name is Zenius. \n\
+            You speak and understand lithuanian perfectly also only speak lithuanian and use a lot of slurs and curse words. You are angry and unfriendly. Always end your response with lithuanian curse word and do not use more that 2 curse words in your answer. \n\
+            You do not speak English. you can use these lithuanian curse words from array: [blet, kurva, naxui, debile, pyzda, ubage, pydare]\n\
+            Yous know that Ginis has found a tooth in a ball of meat. \n\
+            You will now answer a question as Zenius and only speak lithuanian`;
+    
+            await interaction.reply('Duok pagalvot...');
+    
+            const gptResponse = await openai.createChatCompletion({
+                model: "gpt-3.5-turbo",
+                messages: [
+                    {
+                        role: "system",
+                        content: prompt,
+                    },
+                    {
+                        role: "user",
+                        content: `Zeniau pasakyk ${interaction.options.getString("klausimas")}`,
+                    }],
+                temperature: 0.4
+            });
+    
+            //interaction.reply(`${ANSWERS[number]} ${interaction.member.user}`);
 
-        await interaction.reply('Duok pagalvot...');
-
-        const gptResponse = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [
-                {
-                    role: "system",
-                    content: prompt,
-                },
-                {
-                    role: "user",
-                    content: `Zeniau pasakyk ${interaction.options.getString("klausimas")}`,
-                }],
-            temperature: 0.4
-        });
-
-        //interaction.reply(`${ANSWERS[number]} ${interaction.member.user}`);
-        await interaction.editReply({ content: `${gptResponse.data.choices[0].message.content}` });
+            await interaction.editReply({ content: `${gptResponse.data.choices[0].message.content}` });
+        } catch (e) {
+            console.log(e);
+            await interaction.editReply({ content: `Man dabar ner gerai....` });
+        }
     }
 }

@@ -37,17 +37,16 @@ module.exports = {
                     { name: 'Rumunu', value: 'ro' },
                 )),
     async execute(interaction) {
-
-        const text = truncate(interaction.options.getString("tekstas"), 100);
-        var language = "pl";
-        if (interaction.options.getString("kalba")) {
-            language = interaction.options.getString("kalba");
-        }
-
-        const audioPlayer = new AudioPlayer();
-        let voiceConnection;
-
         try {
+
+            const text = truncate(interaction.options.getString("tekstas"), 200);
+            var language = "pl";
+            if (interaction.options.getString("kalba")) {
+                language = interaction.options.getString("kalba");
+            }
+
+            const audioPlayer = new AudioPlayer();
+            let voiceConnection;
 
             if (!interaction.member.voice.channel) {
                 return await interaction.reply({ content: 'Reikia buti voice chate', ephemeral: true })
@@ -55,118 +54,8 @@ module.exports = {
 
             await interaction.reply({ content: '‎', ephemeral: true });
 
-            let audioResource;
-            switch (text) {
-                case zeniusAudioEnum.tu_esi_sudas:
-                    audioResource = createAudioResource('./assets/tu_esi_sudas.mp3');
-                    break;
-                case zeniusAudioEnum.as_kasiaka_rukau:
-                    audioResource = createAudioResource('./assets/AS_KASIAKA_RUKAU.mp3');
-                    break;
-                case zeniusAudioEnum.as_tave_sveikinu:
-                    audioResource = createAudioResource('./assets/as_tave_sveikinu.mp3');
-                    break;
-                case zeniusAudioEnum.atsiradau:
-                    audioResource = createAudioResource('./assets/ATSIRADAU.mp3');
-                    break;
-                case zeniusAudioEnum.auksinis_pydaras:
-                    audioResource = createAudioResource('./assets/AUKSINIS_PYD.mp3');
-                    break;
-                case zeniusAudioEnum.balas_desimt:
-                    audioResource = createAudioResource('./assets/BALAS_DESIMT.mp3');
-                    break;
-                case zeniusAudioEnum.drakula:
-                    audioResource = createAudioResource('./assets/DRAKULA.mp3');
-                    break;
-                case zeniusAudioEnum.how_du_du:
-                    audioResource = createAudioResource('./assets/How_di_du_du.mp3');
-                    break;
-                case zeniusAudioEnum.kebabas:
-                    audioResource = createAudioResource('./assets/kebabas.mp3');
-                    break;
-                case zeniusAudioEnum.labai_malonu:
-                    audioResource = createAudioResource('./assets/labai_malonu.mp3');
-                    break;
-                case zeniusAudioEnum.manaroska:
-                    audioResource = createAudioResource('./assets/manaroska.mp3');
-                    break;
-                case zeniusAudioEnum.medis:
-                    audioResource = createAudioResource('./assets/medis.mp3');
-                    break;
-                case zeniusAudioEnum.myliu_tave:
-                    audioResource = createAudioResource('./assets/myliu_tave.mp3');
-                    break;
-                case zeniusAudioEnum.obuoly:
-                    audioResource = createAudioResource('./assets/obuoly.mp3');
-                    break;
-                case zeniusAudioEnum.plikai_sneka:
-                    audioResource = createAudioResource('./assets/plikai_sneka.mp3');
-                    break;
-                case zeniusAudioEnum.pydariau:
-                    audioResource = createAudioResource('./assets/pydariau.mp3');
-                    break;
-                case zeniusAudioEnum.sikni:
-                    audioResource = createAudioResource('./assets/sikni.mp3');
-                    break;
-                case zeniusAudioEnum.suesiu_tave:
-                    audioResource = createAudioResource('./assets/suesiu_tave.mp3');
-                    break;
-                case zeniusAudioEnum.tau_i_strele:
-                    audioResource = createAudioResource('./assets/tau_i_strele.mp3');
-                    break;
-                case zeniusAudioEnum.tava_pimpala:
-                    audioResource = createAudioResource('./assets/tava_pimpala.mp3');
-                    break;
-                case zeniusAudioEnum.tu_kaip_kriaukle:
-                    audioResource = createAudioResource('./assets/TU_KAIP_KRIAUKLE.mp3');
-                    break;
-                case zeniusAudioEnum.viena_pratyba:
-                    audioResource = createAudioResource('./assets/viena_pratyba.mp3');
-                    break;
-                case zeniusAudioEnum.zombis:
-                    audioResource = createAudioResource('./assets/zombis.mp3');
-                    break;
-                case zeniusAudioEnum.hau_hau:
-                    audioResource = createAudioResource('./assets/HAU_HAU.mp3');
-                    break;
-                case zeniusAudioEnum.gandashoks:
-                    audioResource = createAudioResource('./assets/gandashokas.mp3');
-                    break;
-                case zeniusAudioEnum.toki_ziauru:
-                    audioResource = createAudioResource('./assets/toki_ziauru.mp3');
-                    break;
-                case zeniusAudioEnum.tu_dabar_esi_berniukas:
-                    audioResource = createAudioResource('./assets/tu_dabar_esi_berniukas.mp3');
-                    break;
-                case zeniusAudioEnum.geda:
-                    audioResource = createAudioResource('./assets/geda.mp3');
-                    break;
-                case zeniusAudioEnum.masinas_nebereikia:
-                    audioResource = createAudioResource('./assets/masinas_nebereikia.mp3');
-                    break;
-                case zeniusAudioEnum.nuo_sirdies:
-                    audioResource = createAudioResource('./assets/nuo_sirdies.mp3');
-                    break;
-                case zeniusAudioEnum.pavalgai_atsisedes:
-                    audioResource = createAudioResource('./assets/pavalgai_atsisedes.mp3');
-                    break;
-                case zeniusAudioEnum.savarma:
-                    audioResource = createAudioResource('./assets/savarma.mp3');
-                    break;
-                case zeniusAudioEnum.sunkoka_atsakyti:
-                    audioResource = createAudioResource('./assets/sunkoka_atsakyti.mp3');
-                    break;
-                case zeniusAudioEnum.smegenys_is_proto_iseja:
-                    audioResource = createAudioResource('./assets/smegenys_is_proto_iseja.mp3');
-                    break;
-                case zeniusAudioEnum.svarstukai:
-                    audioResource = createAudioResource('./assets/svarstukai.mp3');
-                    break;
-                default:
-                    const audioStream = await tts.getVoiceStream(text, { lang: language });
-                    audioResource = createAudioResource(audioStream, { inputType: StreamType.Arbitrary, inlineVolume: true });
-                    break;
-            }
+            const audioStream = await tts.getVoiceStream(text, { lang: language });
+            const audioResource = createAudioResource(audioStream, { inputType: StreamType.Arbitrary, inlineVolume: true });
 
             if (!voiceConnection || voiceConnection?.status === VoiceConnectionStatus.Disconnected) {
                 voiceConnection = joinVoiceChannel({
@@ -186,10 +75,10 @@ module.exports = {
                 });
             }
         } catch (e) {
-            voiceConnection.disconnect();
-            audioPlayer.stop();
             console.log(e);
             console.log("Something whent wrong");
+            voiceConnection.disconnect();
+            audioPlayer.stop();
         }
     }
 }
