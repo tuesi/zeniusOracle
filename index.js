@@ -10,6 +10,7 @@ const express = require("express");
 const { cronStart } = require('./games/game_select');
 var app = express();
 require('dotenv').config();
+const playAudioOnJoin = require('./misc/play_audio_on_join');
 
 // app.use(cors({origin: '*'}));
 
@@ -84,5 +85,7 @@ client.on('interactionCreate', async interaction => {
 });
 
 cronStart();
+playAudioOnJoin(client);
+
 
 client.login(process.env.DISCORD_KEY);

@@ -40,22 +40,51 @@ module.exports = {
                     { name: zeniusAudioEnum.hau_hau, value: zeniusAudioEnum.hau_hau },
                     { name: zeniusAudioEnum.gandashoks, value: zeniusAudioEnum.gandashoks }
                 ))
-                .addStringOption(option =>
-                    option.setName("frazes2")
-                    .setDescription("Makso frazes 2 tomas")
-                    .setRequired(false)
-                    .addChoices(
-                        { name: zeniusAudioEnum.toki_ziauru, value: zeniusAudioEnum.toki_ziauru },
-                        { name: zeniusAudioEnum.tu_dabar_esi_berniukas, value: zeniusAudioEnum.tu_dabar_esi_berniukas },
-                        { name: zeniusAudioEnum.geda, value: zeniusAudioEnum.geda },
-                        { name: zeniusAudioEnum.masinas_nebereikia, value: zeniusAudioEnum.masinas_nebereikia },
-                        { name: zeniusAudioEnum.nuo_sirdies, value: zeniusAudioEnum.nuo_sirdies },
-                        { name: zeniusAudioEnum.pavalgai_atsisedes, value: zeniusAudioEnum.pavalgai_atsisedes },
-                        { name: zeniusAudioEnum.sunkoka_atsakyti, value: zeniusAudioEnum.sunkoka_atsakyti },
-                        { name: zeniusAudioEnum.svarstukai, value: zeniusAudioEnum.svarstukai },
-                        { name: zeniusAudioEnum.smegenys_is_proto_iseja, value: zeniusAudioEnum.smegenys_is_proto_iseja },
-                        { name: zeniusAudioEnum.savarma, value: zeniusAudioEnum.savarma }
-                    )),
+        .addStringOption(option =>
+            option.setName("frazes2")
+                .setDescription("Makso frazes 2 tomas")
+                .setRequired(false)
+                .addChoices(
+                    { name: zeniusAudioEnum.toki_ziauru, value: zeniusAudioEnum.toki_ziauru },
+                    { name: zeniusAudioEnum.tu_dabar_esi_berniukas, value: zeniusAudioEnum.tu_dabar_esi_berniukas },
+                    { name: zeniusAudioEnum.geda, value: zeniusAudioEnum.geda },
+                    { name: zeniusAudioEnum.masinas_nebereikia, value: zeniusAudioEnum.masinas_nebereikia },
+                    { name: zeniusAudioEnum.nuo_sirdies, value: zeniusAudioEnum.nuo_sirdies },
+                    { name: zeniusAudioEnum.pavalgai_atsisedes, value: zeniusAudioEnum.pavalgai_atsisedes },
+                    { name: zeniusAudioEnum.sunkoka_atsakyti, value: zeniusAudioEnum.sunkoka_atsakyti },
+                    { name: zeniusAudioEnum.svarstukai, value: zeniusAudioEnum.svarstukai },
+                    { name: zeniusAudioEnum.smegenys_is_proto_iseja, value: zeniusAudioEnum.smegenys_is_proto_iseja },
+                    { name: zeniusAudioEnum.savarma, value: zeniusAudioEnum.savarma },
+                    { name: zeniusAudioEnum.ameno, value: zeniusAudioEnum.ameno },
+                    { name: zeniusAudioEnum.atrobuojanti, value: zeniusAudioEnum.atrobuojanti },
+                    { name: zeniusAudioEnum.auch_auch, value: zeniusAudioEnum.auch_auch },
+                    { name: zeniusAudioEnum.bomzas, value: zeniusAudioEnum.bomzas },
+                    { name: zeniusAudioEnum.burna_pradziutu, value: zeniusAudioEnum.burna_pradziutu },
+                    { name: zeniusAudioEnum.dziungle_is_afrikos, value: zeniusAudioEnum.dziungle_is_afrikos },
+                    { name: zeniusAudioEnum.is_kur_atsirado_dziungle, value: zeniusAudioEnum.is_kur_atsirado_dziungle },
+                    { name: zeniusAudioEnum.ispaniskai, value: zeniusAudioEnum.ispaniskai },
+                    { name: zeniusAudioEnum.ka_cia_tai_reiskai, value: zeniusAudioEnum.ka_cia_tai_reiskai },
+                    { name: zeniusAudioEnum.kodel_taip_zmones_sako, value: zeniusAudioEnum.kodel_taip_zmones_sako },
+                    { name: zeniusAudioEnum.koks_linksmumas, value: zeniusAudioEnum.koks_linksmumas },
+                    { name: zeniusAudioEnum.magyla, value: zeniusAudioEnum.magyla },
+                    { name: zeniusAudioEnum.mesa_suspaudzia, value: zeniusAudioEnum.mesa_suspaudzia },
+                    { name: zeniusAudioEnum.nenormalus, value: zeniusAudioEnum.nenormalus }
+                ))
+        .addStringOption(option =>
+            option.setName("frazes3")
+                .setDescription("Makso frazes 3 tomas")
+                .setRequired(false)
+                .addChoices(
+                    { name: zeniusAudioEnum.obuoli_suvalgai, value: zeniusAudioEnum.obuoli_suvalgai },
+                    { name: zeniusAudioEnum.po_viena_troba, value: zeniusAudioEnum.po_viena_troba },
+                    { name: zeniusAudioEnum.puse_zmonus_puse_bezdzione, value: zeniusAudioEnum.puse_zmonus_puse_bezdzione },
+                    { name: zeniusAudioEnum.simta_balu, value: zeniusAudioEnum.simta_balu },
+                    { name: zeniusAudioEnum.su_liezuviu, value: zeniusAudioEnum.su_liezuviu },
+                    { name: zeniusAudioEnum.sutraisysiu, value: zeniusAudioEnum.sutraisysiu },
+                    { name: zeniusAudioEnum.traukinys_ramiai_stovi, value: zeniusAudioEnum.traukinys_ramiai_stovi },
+                    { name: zeniusAudioEnum.tu_pritriesi, value: zeniusAudioEnum.tu_pritriesi },
+                    { name: zeniusAudioEnum.uch_uch, value: zeniusAudioEnum.uch_uch }
+                )),
     async execute(interaction) {
 
         var phrase;
@@ -63,7 +92,10 @@ module.exports = {
             phrase = interaction.options.getString("frazes1");
         } else if (interaction.options.getString("frazes2")) {
             phrase = interaction.options.getString("frazes2");
-        } else {
+        } else if (interaction.options.getString("frazes3")) {
+            phrase = interaction.options.getString("frazes3");
+        }
+        else {
             return await interaction.reply({ content: 'Nieko neivedei gandashoke!', ephemeral: true })
         }
 
@@ -184,6 +216,75 @@ module.exports = {
                     break;
                 case zeniusAudioEnum.svarstukai:
                     audioResource = createAudioResource('./assets/svarstukai.mp3');
+                    break;
+                case zeniusAudioEnum.ameno:
+                    audioResource = createAudioResource('./assets/AMENO.mp3');
+                    break;
+                case zeniusAudioEnum.atrobuojanti:
+                    audioResource = createAudioResource('./assets/atrobuojanti.mp3');
+                    break;
+                case zeniusAudioEnum.auch_auch:
+                    audioResource = createAudioResource('./assets/auch_auch.mp3');
+                    break;
+                case zeniusAudioEnum.bomzas:
+                    audioResource = createAudioResource('./assets/bomzas.mp3');
+                    break;
+                case zeniusAudioEnum.burna_pradziutu:
+                    audioResource = createAudioResource('./assets/burna_pradziutu.mp3');
+                    break;
+                case zeniusAudioEnum.dziungle_is_afrikos:
+                    audioResource = createAudioResource('./assets/dziungle_is_afrikos.mp3');
+                    break;
+                case zeniusAudioEnum.is_kur_atsirado_dziungle:
+                    audioResource = createAudioResource('./assets/is_kur_atsirado_dziungle.mp3');
+                    break;
+                case zeniusAudioEnum.ispaniskai:
+                    audioResource = createAudioResource('./assets/ispaniskai.mp3');
+                    break;
+                case zeniusAudioEnum.ka_cia_tai_reiskai:
+                    audioResource = createAudioResource('./assets/ka_cia_tai_reiskia.mp3');
+                    break;
+                case zeniusAudioEnum.kodel_taip_zmones_sako:
+                    audioResource = createAudioResource('./assets/kodel_taip_zmones_sako.mp3');
+                    break;
+                case zeniusAudioEnum.koks_linksmumas:
+                    audioResource = createAudioResource('./assets/koks_linksmumas.mp3');
+                    break;
+                case zeniusAudioEnum.magyla:
+                    audioResource = createAudioResource('./assets/magyla.mp3');
+                    break;
+                case zeniusAudioEnum.mesa_suspaudzia:
+                    audioResource = createAudioResource('./assets/mesa_suspaudzia.mp3');
+                    break;
+                case zeniusAudioEnum.nenormalus:
+                    audioResource = createAudioResource('./assets/nennormalus.mp3');
+                    break;
+                case zeniusAudioEnum.obuoli_suvalgai:
+                    audioResource = createAudioResource('./assets/obuoli_suvalgai.mp3');
+                    break;
+                case zeniusAudioEnum.po_viena_troba:
+                    audioResource = createAudioResource('./assets/po_viena_troba.mp3');
+                    break;
+                case zeniusAudioEnum.puse_zmonus_puse_bezdzione:
+                    audioResource = createAudioResource('./assets/puse_zmogus_puse_bezdzione.mp3');
+                    break;
+                case zeniusAudioEnum.simta_balu:
+                    audioResource = createAudioResource('./assets/simta_balu.mp3');
+                    break;
+                case zeniusAudioEnum.su_liezuviu:
+                    audioResource = createAudioResource('./assets/su_liezuviu.mp3');
+                    break;
+                case zeniusAudioEnum.sutraisysiu:
+                    audioResource = createAudioResource('./assets/sutraiskysiu.mp3');
+                    break;
+                case zeniusAudioEnum.traukinys_ramiai_stovi:
+                    audioResource = createAudioResource('./assets/traukinys_ramiai_stovi.mp3');
+                    break;
+                case zeniusAudioEnum.tu_pritriesi:
+                    audioResource = createAudioResource('./assets/tu_pritriesi.mp3');
+                    break;
+                case zeniusAudioEnum.uch_uch:
+                    audioResource = createAudioResource('./assets/uch_uch.mp3');
                     break;
                 default:
                     return await interaction.reply({ content: 'Sugadino man reikalus drakula!', ephemeral: true });

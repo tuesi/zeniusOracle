@@ -33,7 +33,30 @@ const zeniusAudioEnum = {
     smegenys_is_proto_iseja: "smegenys is proto iseja",
     sunkoka_atsakyti: "sunkoka atsakyti",
     svarstukai: "svarstukai",
-    tu_dabar_esi_berniukas: "tu dabar esi berniukas"
+    tu_dabar_esi_berniukas: "tu dabar esi berniukas",
+    ameno: "ameno",
+    atrobuojanti: "atrobuojanti",
+    auch_auch: "auch auch",
+    bomzas: "bomzas",
+    burna_pradziutu: "burna pradziutu",
+    dziungle_is_afrikos: "dziungle is afrikos",
+    is_kur_atsirado_dziungle: "is kur atsirado dziungle",
+    ispaniskai: "ispaniskai",
+    ka_cia_tai_reiskai: "ka cia tai reiskia",
+    kodel_taip_zmones_sako: "kodel taip zmones sako",
+    koks_linksmumas: "koks linksmumas",
+    magyla: "magyla",
+    mesa_suspaudzia: "mesa suspaudzia",
+    nenormalus: "nenormalus",
+    obuoli_suvalgai: "obuoli suvalgai",
+    po_viena_troba: "po viena troba",
+    puse_zmonus_puse_bezdzione: "puse zmogus puse bezdzione",
+    simta_balu: "simta balu",
+    su_liezuviu: "su liezuviu",
+    sutraisysiu: "sutraiskysiu",
+    traukinys_ramiai_stovi: "traukinys ramiai stovi",
+    tu_pritriesi: "tu pritriesi",
+    uch_uch: "uch uch"
 }
 
 
