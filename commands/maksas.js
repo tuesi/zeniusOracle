@@ -224,7 +224,7 @@ module.exports = {
                     audioResource = createAudioResource('./assets/atrobuojanti.mp3');
                     break;
                 case zeniusAudioEnum.auch_auch:
-                    audioResource = createAudioResource('./assets/auch_auch.mp3');
+                    audioResource = createAudioResource('./assets/aunch_auch.mp3');
                     break;
                 case zeniusAudioEnum.bomzas:
                     audioResource = createAudioResource('./assets/bomzas.mp3');
@@ -260,7 +260,7 @@ module.exports = {
                     audioResource = createAudioResource('./assets/nennormalus.mp3');
                     break;
                 case zeniusAudioEnum.obuoli_suvalgai:
-                    audioResource = createAudioResource('./assets/obuoli_suvalgai.mp3');
+                    audioResource = createAudioResource('./assets/obuoli_syvalgai.mp3');
                     break;
                 case zeniusAudioEnum.po_viena_troba:
                     audioResource = createAudioResource('./assets/po_viena_troba.mp3');
