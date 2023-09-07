@@ -83,7 +83,8 @@ module.exports = {
                     { name: zeniusAudioEnum.sutraisysiu, value: zeniusAudioEnum.sutraisysiu },
                     { name: zeniusAudioEnum.traukinys_ramiai_stovi, value: zeniusAudioEnum.traukinys_ramiai_stovi },
                     { name: zeniusAudioEnum.tu_pritriesi, value: zeniusAudioEnum.tu_pritriesi },
-                    { name: zeniusAudioEnum.uch_uch, value: zeniusAudioEnum.uch_uch }
+                    { name: zeniusAudioEnum.uch_uch, value: zeniusAudioEnum.uch_uch },
+                    { name: zeniusAudioEnum.i_dont_understand_lithuanian, value: zeniusAudioEnum.i_dont_understand_lithuanian }
                 )),
     async execute(interaction) {
 
@@ -285,6 +286,9 @@ module.exports = {
                     break;
                 case zeniusAudioEnum.uch_uch:
                     audioResource = createAudioResource('./assets/uch_uch.mp3');
+                    break;
+                case zeniusAudioEnum.i_dont_understand_lithuanian:
+                    audioResource = createAudioResource('./assets/i_dont_understand_lithuania.mp3');
                     break;
                 default:
                     return await interaction.reply({ content: 'Sugadino man reikalus drakula!', ephemeral: true });

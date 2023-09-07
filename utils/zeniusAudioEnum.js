@@ -56,7 +56,8 @@ const zeniusAudioEnum = {
     sutraisysiu: "sutraiskysiu",
     traukinys_ramiai_stovi: "traukinys ramiai stovi",
     tu_pritriesi: "tu pritriesi",
-    uch_uch: "uch uch"
+    uch_uch: "uch uch",
+    i_dont_understand_lithuanian: "i dont understand lithuanian"
 }
 
 
