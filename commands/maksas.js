@@ -296,8 +296,7 @@ module.exports = {
                     return await interaction.reply({ content: 'Sugadino man reikalus drakula!', ephemeral: true });
             }
 
-            console.log(voiceConnection?.status);
-
+            globalVoiceConnection.checkActivity();
             voiceConnection = globalVoiceConnection.getVoiceConnection();
 
             if (!voiceConnection || voiceConnection.status === VoiceConnectionStatus.Disconnected) {
@@ -311,6 +310,7 @@ module.exports = {
             if (voiceConnection.status === VoiceConnectionStatus.Connected) {
                 voiceConnection.subscribe(audioPlayer);
                 globalVoiceConnection.setVoiceConnection(voiceConnection);
+                globalVoiceConnection.updateLastInteractionTime();
                 audioPlayer.play(audioResource);
                 audioPlayer.on("stateChange", (oldState, newState) => {
                     if (newState.status === AudioPlayerStatus.Idle) {
@@ -334,5 +334,3 @@ function truncate(str, length) {
         return str.slice(0, length);
     } else return str;
 }
-
-globalVoiceConnection.checkActivity();

@@ -8,6 +8,7 @@ module.exports = (client) => {
         //console.log(newState.channel);
         if ((newState.member.user.id === '305028139514593291' || newState.member.user.id === '198493904444588032') && newState.channel) {
             try {
+                globalVoiceConnection.checkActivity();
                 let audioResource;
                 let voiceConnection = globalVoiceConnection.getVoiceConnection();
                 if (newState.member.user.id === '305028139514593291') {
@@ -15,8 +16,6 @@ module.exports = (client) => {
                 } else if (newState.member.user.id === '198493904444588032') {
                     audioResource = createAudioResource('./assets/batarke_baigias.mp3');
                 }
-
-                console.log(voiceConnection?._state.status);
 
                 if (!voiceConnection || voiceConnection.status === VoiceConnectionStatus.Disconnected) {
                     console.log('set new voice connection');
@@ -32,10 +31,12 @@ module.exports = (client) => {
                     voiceConnection.subscribe(audioPlayer);
                     audioPlayer.play(audioResource);
                     globalVoiceConnection.setVoiceConnection(voiceConnection);
+                    globalVoiceConnection.updateLastInteractionTime();
 
                     audioPlayer.on("stateChange", (oldState, newState) => {
                         if (newState.status === AudioPlayerStatus.Idle) {
                             //voiceConnection.disconnect();
+                            console.log('stop audio');
                             audioPlayer.stop();
                             globalVoiceConnection.updateLastInteractionTime();
                         }
@@ -61,9 +62,8 @@ module.exports = (client) => {
                 audioPlayer.stop();
                 console.log(e);
                 console.log("Something whent wrong");
+                globalVoiceConnection.checkActivity();
             }
         }
     });
 }
-
-globalVoiceConnection.checkActivity();

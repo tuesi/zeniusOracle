@@ -40,8 +40,9 @@ module.exports = {
                     { name: 'Rumunu', value: 'ro' },
                 )),
     async execute(interaction) {
-        try {
 
+        try {
+            globalVoiceConnection.checkActivity();
             const text = truncate(interaction.options.getString("tekstas"), 200);
             var language = "pl";
             if (interaction.options.getString("kalba")) {
@@ -70,6 +71,7 @@ module.exports = {
             if (voiceConnection.status === VoiceConnectionStatus.Connected) {
                 voiceConnection.subscribe(audioPlayer);
                 globalVoiceConnection.setVoiceConnection(voiceConnection);
+                globalVoiceConnection.updateLastInteractionTime();
                 audioPlayer.play(audioResource);
                 audioPlayer.on("stateChange", (oldState, newState) => {
                     if (newState.status === AudioPlayerStatus.Idle) {
@@ -93,5 +95,3 @@ function truncate(str, length) {
         return str.slice(0, length);
     } else return str;
 }
-
-globalVoiceConnection.checkActivity();

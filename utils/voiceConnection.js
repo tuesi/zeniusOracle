@@ -17,6 +17,7 @@ function getVoiceConnection() {
 }
 
 function updateLastInteractionTime() {
+    console.log('update');
     lastInteractionTime = Date.now();
 }
 
@@ -29,6 +30,7 @@ function checkActivity() {
     if (timeSinceLastInteraction >= disconnectTimeout && voiceConnection) {
         // Disconnect the bot if there has been no interaction for the specified duration
         voiceConnection.disconnect();
+        setVoiceConnection(null);
     } else {
         // Continue checking for inactivity
         setTimeout(checkActivity, disconnectTimeout - timeSinceLastInteraction);

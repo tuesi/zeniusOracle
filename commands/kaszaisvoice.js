@@ -137,6 +137,8 @@ module.exports = {
         }),
     async execute(interaction) {
 
+        globalVoiceConnection.checkActivity();
+
         var zaidejuArray = [interaction.options.getUser("zaidejas1"),
         interaction.options.getUser("zaidejas2"), interaction.options.getUser("zaidejas3"),
         interaction.options.getUser("zaidejas4"), interaction.options.getUser("zaidejas5"),
@@ -214,6 +216,7 @@ module.exports = {
             if (voiceConnection.status === VoiceConnectionStatus.Connected) {
                 voiceConnection.subscribe(audioPlayer);
                 globalVoiceConnection.setVoiceConnection(voiceConnection);
+                globalVoiceConnection.updateLastInteractionTime();
 
                 for (const audioResource of audioResources) {
                     try {
@@ -260,5 +263,3 @@ function createSilentAudioResource(duration) {
     silenceStream.push(null);
     return createAudioResource(silenceStream, { inputType: StreamType.Raw });
 }
-
-globalVoiceConnection.checkActivity();
