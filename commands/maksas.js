@@ -300,7 +300,7 @@ module.exports = {
 
             voiceConnection = globalVoiceConnection.getVoiceConnection();
 
-            if (!voiceConnection) {
+            if (!voiceConnection || voiceConnection.status === VoiceConnectionStatus.Disconnected) {
                 voiceConnection = joinVoiceChannel({
                     channelId: interaction.member.voice.channelId,
                     guildId: interaction.guildId,

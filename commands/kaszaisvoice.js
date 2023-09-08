@@ -203,7 +203,7 @@ module.exports = {
                 audioResources.push(audioResource);
             }
 
-            if (!voiceConnection || (voiceConnection._state.status && voiceConnection.status === VoiceConnectionStatus.Disconnected)) {
+            if (!voiceConnection || voiceConnection.status === VoiceConnectionStatus.Disconnected) {
                 voiceConnection = joinVoiceChannel({
                     channelId: interaction.member.voice.channelId,
                     guildId: interaction.guildId,
