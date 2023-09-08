@@ -4,6 +4,10 @@ const tts = require("discord-tts");
 const { Client, Intents } = require("discord.js");
 const { AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel, AudioPlayerStatus } = require("@discordjs/voice");
 const zeniusAudioEnum = require("../utils/zeniusAudioEnum.js");
+const globalVoiceConnection = require('../utils/voiceConnection');
+
+const audioPlayer = new AudioPlayer();
+let voiceConnection;
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -100,9 +104,6 @@ module.exports = {
             return await interaction.reply({ content: 'Nieko neivedei gandashoke!', ephemeral: true })
         }
 
-        const audioPlayer = new AudioPlayer();
-        let voiceConnection;
-
         try {
 
             if (!interaction.member.voice.channel) {
@@ -112,6 +113,7 @@ module.exports = {
             await interaction.reply({ content: '‎', ephemeral: true });
 
             let audioResource;
+
             switch (phrase) {
                 case zeniusAudioEnum.tu_esi_sudas:
                     audioResource = createAudioResource('./assets/tu_esi_sudas.mp3');
@@ -294,7 +296,11 @@ module.exports = {
                     return await interaction.reply({ content: 'Sugadino man reikalus drakula!', ephemeral: true });
             }
 
-            if (!voiceConnection || voiceConnection?.status === VoiceConnectionStatus.Disconnected) {
+            console.log(voiceConnection?.status);
+
+            voiceConnection = globalVoiceConnection.getVoiceConnection();
+
+            if (!voiceConnection) {
                 voiceConnection = joinVoiceChannel({
                     channelId: interaction.member.voice.channelId,
                     guildId: interaction.guildId,
@@ -304,10 +310,12 @@ module.exports = {
             }
             if (voiceConnection.status === VoiceConnectionStatus.Connected) {
                 voiceConnection.subscribe(audioPlayer);
+                globalVoiceConnection.setVoiceConnection(voiceConnection);
                 audioPlayer.play(audioResource);
                 audioPlayer.on("stateChange", (oldState, newState) => {
                     if (newState.status === AudioPlayerStatus.Idle) {
-                        voiceConnection.disconnect();
+                        //voiceConnection.disconnect();
+                        globalVoiceConnection.updateLastInteractionTime();
                     }
                 });
             }
@@ -325,3 +333,5 @@ function truncate(str, length) {
         return str.slice(0, length);
     } else return str;
 }
+
+globalVoiceConnection.checkActivity();

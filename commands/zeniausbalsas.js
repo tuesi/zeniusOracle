@@ -4,6 +4,9 @@ const tts = require("discord-tts");
 const { Client, Intents } = require("discord.js");
 const { AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel, AudioPlayerStatus } = require("@discordjs/voice");
 const zeniusAudioEnum = require("../utils/zeniusAudioEnum.js");
+const globalVoiceConnection = require('../utils/voiceConnection');
+
+const audioPlayer = new AudioPlayer();
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -45,8 +48,7 @@ module.exports = {
                 language = interaction.options.getString("kalba");
             }
 
-            const audioPlayer = new AudioPlayer();
-            let voiceConnection;
+            let voiceConnection = globalVoiceConnection.getVoiceConnection();
 
             if (!interaction.member.voice.channel) {
                 return await interaction.reply({ content: 'Reikia buti voice chate', ephemeral: true })
@@ -57,7 +59,7 @@ module.exports = {
             const audioStream = await tts.getVoiceStream(text, { lang: language });
             const audioResource = createAudioResource(audioStream, { inputType: StreamType.Arbitrary, inlineVolume: true });
 
-            if (!voiceConnection || voiceConnection?.status === VoiceConnectionStatus.Disconnected) {
+            if (!voiceConnection) {
                 voiceConnection = joinVoiceChannel({
                     channelId: interaction.member.voice.channelId,
                     guildId: interaction.guildId,
@@ -67,10 +69,12 @@ module.exports = {
             }
             if (voiceConnection.status === VoiceConnectionStatus.Connected) {
                 voiceConnection.subscribe(audioPlayer);
+                globalVoiceConnection.setVoiceConnection(voiceConnection);
                 audioPlayer.play(audioResource);
                 audioPlayer.on("stateChange", (oldState, newState) => {
                     if (newState.status === AudioPlayerStatus.Idle) {
-                        voiceConnection.disconnect();
+                        //voiceConnection.disconnect();
+                        globalVoiceConnection.updateLastInteractionTime();
                     }
                 });
             }
@@ -88,3 +92,5 @@ function truncate(str, length) {
         return str.slice(0, length);
     } else return str;
 }
+
+globalVoiceConnection.checkActivity();

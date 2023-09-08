@@ -5,8 +5,9 @@ const { Client, Intents } = require("discord.js");
 const { AudioPlayer, createAudioResource, StreamType, entersState, VoiceConnectionStatus, joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, AudioPlayerError } = require("@discordjs/voice");
 const { Readable } = require('stream');
 const { Silence } = require('prism-media')
+const globalVoiceConnection = require('../utils/voiceConnection');
 
-let audioPlayer;
+const audioPlayer = new AudioPlayer();
 const pauseSymbol = ";";
 const pauseDuration = 300000; // 30 seconds
 
@@ -183,8 +184,7 @@ module.exports = {
 
         await interaction.reply(`ZENIUS SAKO, KAD BUVO IVESTA ${activePlayers}`);
 
-        let voiceConnection;
-        audioPlayer = new AudioPlayer();
+        let voiceConnection = globalVoiceConnection.getVoiceConnection();
         try {
             const textParts = text.split(pauseSymbol);
             const audioResources = [];
@@ -203,7 +203,7 @@ module.exports = {
                 audioResources.push(audioResource);
             }
 
-            if (!voiceConnection || voiceConnection?.status === VoiceConnectionStatus.Disconnected) {
+            if (!voiceConnection) {
                 voiceConnection = joinVoiceChannel({
                     channelId: interaction.member.voice.channelId,
                     guildId: interaction.guildId,
@@ -213,6 +213,7 @@ module.exports = {
             }
             if (voiceConnection.status === VoiceConnectionStatus.Connected) {
                 voiceConnection.subscribe(audioPlayer);
+                globalVoiceConnection.setVoiceConnection(voiceConnection);
 
                 for (const audioResource of audioResources) {
                     try {
@@ -235,7 +236,8 @@ module.exports = {
                     }
                 }
 
-                voiceConnection.disconnect();
+                //voiceConnection.disconnect();
+                globalVoiceConnection.updateLastInteractionTime();
             }
         } catch (e) {
             console.log(e);
@@ -257,3 +259,5 @@ function createSilentAudioResource(duration) {
     silenceStream.push(null);
     return createAudioResource(silenceStream, { inputType: StreamType.Raw });
 }
+
+globalVoiceConnection.checkActivity();
