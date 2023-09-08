@@ -59,7 +59,7 @@ module.exports = {
             const audioStream = await tts.getVoiceStream(text, { lang: language });
             const audioResource = createAudioResource(audioStream, { inputType: StreamType.Arbitrary, inlineVolume: true });
 
-            if (!voiceConnection) {
+            if (!voiceConnection || (voiceConnection._state.status && voiceConnection.status === VoiceConnectionStatus.Disconnected)) {
                 voiceConnection = joinVoiceChannel({
                     channelId: interaction.member.voice.channelId,
                     guildId: interaction.guildId,

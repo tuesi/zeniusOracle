@@ -18,7 +18,7 @@ module.exports = (client) => {
 
                 console.log(voiceConnection?._state.status);
 
-                if (!voiceConnection) {
+                if (!voiceConnection || (voiceConnection._state.status && voiceConnection.status === VoiceConnectionStatus.Disconnected)) {
                     console.log('set new voice connection');
                     voiceConnection = joinVoiceChannel({
                         channelId: newState.channel.id,
