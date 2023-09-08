@@ -237,7 +237,7 @@ module.exports = {
                 }
 
                 //voiceConnection.disconnect();
-                audioPlayer.destroy();
+                audioPlayer.stop();
                 globalVoiceConnection.updateLastInteractionTime();
             }
         } catch (e) {
