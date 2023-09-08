@@ -26,7 +26,7 @@ function checkActivity() {
     const currentTime = Date.now();
     const timeSinceLastInteraction = currentTime - lastInteractionTime;
 
-    if (timeSinceLastInteraction >= disconnectTimeout) {
+    if (timeSinceLastInteraction >= disconnectTimeout && voiceConnection) {
         // Disconnect the bot if there has been no interaction for the specified duration
         voiceConnection.disconnect();
     } else {
