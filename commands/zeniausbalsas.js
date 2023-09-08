@@ -74,6 +74,7 @@ module.exports = {
                 audioPlayer.on("stateChange", (oldState, newState) => {
                     if (newState.status === AudioPlayerStatus.Idle) {
                         //voiceConnection.disconnect();
+                        audioPlayer.destroy();
                         globalVoiceConnection.updateLastInteractionTime();
                     }
                 });
