@@ -17,7 +17,6 @@ module.exports = (client) => {
                 }
 
                 if (!voiceConnection || voiceConnection.status === VoiceConnectionStatus.Disconnected) {
-                    console.log('set new voice connection');
                     voiceConnection = joinVoiceChannel({
                         channelId: newState.channel.id,
                         guildId: newState.guild.id,
@@ -35,7 +34,6 @@ module.exports = (client) => {
                     audioPlayer.on("stateChange", (oldState, newState) => {
                         if (newState.status === AudioPlayerStatus.Idle) {
                             //voiceConnection.disconnect();
-                            console.log('stop audio');
                             audioPlayer.stop();
                             globalVoiceConnection.updateLastInteractionTime();
                         }
