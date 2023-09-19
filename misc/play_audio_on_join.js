@@ -5,8 +5,7 @@ const audioPlayer = new AudioPlayer();
 
 module.exports = (client) => {
     client.on('voiceStateUpdate', async (oldState, newState) => {
-        //console.log(newState.channel);
-        if ((newState.member.user.id === '305028139514593291' || newState.member.user.id === '198493904444588032') && newState.channel) {
+        if ((!oldState.channelId && newState.member.user.id === '305028139514593291' || newState.member.user.id === '198493904444588032') && newState.channel) {
             try {
                 globalVoiceConnection.checkActivity();
                 let audioResource;

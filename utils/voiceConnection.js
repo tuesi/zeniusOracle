@@ -17,7 +17,6 @@ function getVoiceConnection() {
 }
 
 function updateLastInteractionTime() {
-    console.log('update');
     lastInteractionTime = Date.now();
 }
 
