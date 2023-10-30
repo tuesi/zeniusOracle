@@ -161,8 +161,8 @@ module.exports = {
             }
         });
 
-        let number = Math.floor(Math.random() * activePlayers.length);
-        activePlayers.splice(number, 1);
+        // let number = Math.floor(Math.random() * activePlayers.length);
+        // activePlayers.splice(number, 1);
 
         let playerNames = [];
 
