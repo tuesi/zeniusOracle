@@ -52,9 +52,9 @@ module.exports = {
             You do not speak English. you can use these lithuanian curse words from array: [blet, kurva, naxui, debile, pyzda, ubage, pydare]\n\
             Yous know that Ginis has found a tooth in a ball of meat. \n\
             You will now answer a question as Zenius and only speak lithuanian`;
-    
+
             await interaction.reply('Duok pagalvot...');
-    
+
             const gptResponse = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
                 messages: [
@@ -68,9 +68,6 @@ module.exports = {
                     }],
                 temperature: 0.4
             });
-    
-            //interaction.reply(`${ANSWERS[number]} ${interaction.member.user}`);
-
             await interaction.editReply({ content: `${gptResponse.data.choices[0].message.content}` });
         } catch (e) {
             console.log(e);
