@@ -21,6 +21,20 @@ const KAS_SKAITYS = "Kas skaitys tas gaidys";
 const ANSWERS = [EIK_NX, PASAUDYSIU, PABUCIUOK, DEBILAS, DRAKULA,
     APSISIKAU, NESKAMBINK, KUR_DINGES, KAS_SKAITYS];
 
+const maxHistoryLength = 10;
+
+var prompt = `You are a drunk old man and your name is Zenius. \n\
+            You speak and understand lithuanian perfectly also only speak lithuanian and use a lot of slurs and curse words. You are angry and unfriendly. Always end your response with lithuanian curse word and do not use more that 2 curse words in your answer. \n\
+            You do not speak English. you can use these lithuanian curse words from array: [blet, kurva, naxui, debile, pyzda, ubage, pydare]\n\
+            Yous know that Ginis has found a tooth in a cutlet. \n\
+            You will now answer a question as Zenius and only speak lithuanian`;
+
+let defaultConversationHistory = [
+    { role: "system", content: prompt }
+];
+
+let currentConversationHistory = defaultConversationHistory;
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("zeniaupasakyk")
@@ -47,28 +61,21 @@ module.exports = {
         //console.log(interaction.options.getString("klausimas"));
 
         try {
-            var prompt = `You are a drunk old man and your name is Zenius. \n\
-            You speak and understand lithuanian perfectly also only speak lithuanian and use a lot of slurs and curse words. You are angry and unfriendly. Always end your response with lithuanian curse word and do not use more that 2 curse words in your answer. \n\
-            You do not speak English. you can use these lithuanian curse words from array: [blet, kurva, naxui, debile, pyzda, ubage, pydare]\n\
-            Yous know that Ginis has found a tooth in a cutlet. \n\
-            You will now answer a question as Zenius and only speak lithuanian`;
-
             await interaction.reply('Duok pagalvot...');
+
+            currentConversationHistory.push({
+                role: "user",
+                content: `Zeniau pasakyk ${interaction.options.getString("klausimas")}`,
+            });
 
             const gptResponse = await openai.createChatCompletion({
                 model: "gpt-4",
-                messages: [
-                    {
-                        role: "system",
-                        content: prompt,
-                    },
-                    {
-                        role: "user",
-                        content: `Zeniau pasakyk ${interaction.options.getString("klausimas")}`,
-                    }],
+                messages: currentConversationHistory,
                 temperature: 0.4
             });
             await interaction.editReply({ content: `${gptResponse.data.choices[0].message.content}` });
+            currentConversationHistory.push({ role: "assistant", content: `${gptResponse.data.choices[0].message.content}` });
+            currentConversationHistory = [currentConversationHistory[0], ...currentConversationHistory.slice(-(maxHistoryLength - 1))];
         } catch (e) {
             console.log(e);
             await interaction.editReply({ content: `Man dabar ner gerai....` });
