@@ -56,7 +56,7 @@ module.exports = {
             await interaction.reply('Duok pagalvot...');
 
             const gptResponse = await openai.createChatCompletion({
-                model: "gpt-3.5-turbo",
+                model: "gpt-4",
                 messages: [
                     {
                         role: "system",
