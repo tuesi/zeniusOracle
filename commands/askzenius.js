@@ -8,19 +8,6 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const EIK_NX = "Eik naxui";
-const PASAUDYSIU = "Pasaudysiu tau i strele";
-const PABUCIUOK = "Pabuciuok pasakysiu";
-const DEBILAS = "Tu debilas";
-const DRAKULA = "DRAKULA!";
-const APSISIKAU = "Apsisikau pazasti, negaliu sneket";
-const NESKAMBINK = "Nebeskambink, isvazeves";
-const KUR_DINGES = "Ooo Zeniau, kur tiek dinges buvai?";
-const KAS_SKAITYS = "Kas skaitys tas gaidys";
-
-const ANSWERS = [EIK_NX, PASAUDYSIU, PABUCIUOK, DEBILAS, DRAKULA,
-    APSISIKAU, NESKAMBINK, KUR_DINGES, KAS_SKAITYS];
-
 const maxHistoryLength = 10;
 
 var prompt = `You are a drunk old man and your name is Zenius. \n\
@@ -46,20 +33,6 @@ module.exports = {
                 .setRequired(true)
         }),
     async execute(interaction) {
-        //let number = Math.floor(Math.random() * ANSWERS.length);
-        // console.log(number);
-        // console.log(interaction.options.getString("klausimas"));
-        // if (number === 2) {
-        //     pabuciuokStatus = true;
-        //     pabuciuokValue = interaction.options.getString("klausimas");
-        //     pabuciuokUser = interaction.member.user;
-        // } else {
-        //     pabuciuokStatus = false;
-        //     pabuciuokValue = '';
-        //     pabuciuokUser = '';
-        // }
-        //console.log(interaction.options.getString("klausimas"));
-
         try {
             await interaction.reply('Duok pagalvot...');
 
@@ -69,7 +42,7 @@ module.exports = {
             });
 
             const gptResponse = await openai.createChatCompletion({
-                model: "gpt-4",
+                model: "gpt-3.5-turbo",
                 messages: currentConversationHistory,
                 temperature: 0.4
             });
