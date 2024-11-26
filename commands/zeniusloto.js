@@ -56,7 +56,7 @@ module.exports = {
         const emoji7 = emoji.getEmoji(interaction, "aurim2");
         const emoji8 = emoji.getEmoji(interaction, "chicago");
         const emoji9 = emoji.getEmoji(interaction, "ginispassport");
-        const emoji10 = emoji.getEmoji(interaction, "ct2");
+        const emoji10 = emoji.getEmoji(interaction, "ct1");
 
 
         // ‎
