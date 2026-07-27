@@ -211,9 +211,9 @@ module.exports = {
                     guildId: interaction.guildId,
                     adapterCreator: interaction.guild.voiceAdapterCreator,
                 });
-                voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 5_000);
+                voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Ready, 5_000);
             }
-            if (voiceConnection.status === VoiceConnectionStatus.Connected) {
+            if (voiceConnection.status === VoiceConnectionStatus.Ready) {
                 voiceConnection.subscribe(audioPlayer);
                 globalVoiceConnection.setVoiceConnection(voiceConnection);
                 globalVoiceConnection.updateLastInteractionTime();

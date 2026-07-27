@@ -22,10 +22,10 @@ module.exports = (client) => {
                         guildId: newState.guild.id,
                         adapterCreator: newState.guild.voiceAdapterCreator,
                     });
-                    voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Connecting, 10_000);
+                    voiceConnection = await entersState(voiceConnection, VoiceConnectionStatus.Ready, 10_000);
                 }
 
-                if (voiceConnection.status === VoiceConnectionStatus.Connected) {
+                if (voiceConnection.status === VoiceConnectionStatus.Ready) {
                     voiceConnection.subscribe(audioPlayer);
                     audioPlayer.play(audioResource);
                     globalVoiceConnection.setVoiceConnection(voiceConnection);
